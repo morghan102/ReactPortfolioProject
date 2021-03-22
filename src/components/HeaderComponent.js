@@ -41,41 +41,41 @@ class Header extends Component {
     render () {
         return (
             <React.Fragment>
-                <Navbar sticky="top" expand="md">
+                <Navbar sticky="top" expand="md" bg="light" variant="light">
                     <div className="container">
                         <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo"/></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home">
+                                    <NavLink className="nav-link" to="/home" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
                                         <i className="fa fa-home fa-lg" /> Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem> 
-                                    <NavLink className="nav-link" to="/">
+                                    <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
                                         <i className="fa fa-tags fa-lg" /> Products
                                     </NavLink>
                                 </NavItem>
                                 <NavItem> 
-                                    <NavLink className="nav-link" to="/">
+                                    <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
                                         <i className="fa fa-info fa-lg" /> About Us
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/">
+                                    <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
                                         <i className="fa fa-paper-plane fa-lg" /> Blog
                                     </NavLink>
                                 </NavItem>
                             </Nav>
                             <Nav navbar className="ml-auto">
                                     <NavItem className="mt-2">
-                                        <NavLink className="nav-link" to="/"> 
+                                        <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}> 
                                             <i className="fa fa-shopping-cart fa-lg" />
                                         </NavLink>
                                     </NavItem>
                                     <span className="ml-2 navbar-text">
-                                    <Button outline onClick={this.toggleModal}>
+                                    <Button outline onClick={this.toggleModal} style={{color: 'black'}}>
                                         <i className="fa fa-sign-in fa-lg" /> Login
                                     </Button>
                                     {/* <Form inline>
