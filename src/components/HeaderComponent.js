@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Nav, NavbarToggler, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
-import './App.css';
+import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarToggler from 'reactstrap/lib/NavbarToggler';
-import { Collapse } from 'bootstrap';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -39,7 +38,7 @@ class Header extends Component {
     render () {
         return (
             <React.Fragment>
-                <Navbar sticky="top" expand="md" dark>
+                <Navbar sticky="top" expand="md">
                     <div className="container">
                         <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="30" width="30" alt="Others logo"/></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
