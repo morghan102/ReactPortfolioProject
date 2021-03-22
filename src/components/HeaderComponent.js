@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
+// adding alert would be neat
+// https://reactstrap.github.io/components/alerts/
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarToggler from 'reactstrap/lib/NavbarToggler';
 import { NavLink } from 'react-router-dom';
+// import { Control } from 'react-redux-form';
 
 class Header extends Component {
 
@@ -40,7 +43,7 @@ class Header extends Component {
             <React.Fragment>
                 <Navbar sticky="top" expand="md">
                     <div className="container">
-                        <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="30" width="30" alt="Others logo"/></NavbarBrand>
+                        <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo"/></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
@@ -65,11 +68,23 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                             </Nav>
-                            <span className="navbar-text ml-auto">
-                                <Button outline onClick={this.toggleModal}>
-                                    <i className="fa fa-sign-in fa-lg" /> Login
-                                </Button>
-                            </span>
+                            <Nav navbar className="ml-auto">
+                                    <NavItem className="mt-2">
+                                        <NavLink className="nav-link" to="/"> 
+                                            <i className="fa fa-shopping-cart fa-lg" />
+                                        </NavLink>
+                                    </NavItem>
+                                    <span className="ml-2 navbar-text">
+                                    <Button outline onClick={this.toggleModal}>
+                                        <i className="fa fa-sign-in fa-lg" /> Login
+                                    </Button>
+                                    {/* <Form inline>
+                                        <FormControl type="text" placeholder="Search" length="5" className=""/>
+                                        <Button variant="outline-success">Search</Button>
+                                    </Form> 
+                                    I cant figure out how to add the search bar, considering removing it entirely*/}
+                                </span>
+                            </Nav>
                         </Collapse>
                     </div>
                 </Navbar>
