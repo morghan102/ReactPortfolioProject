@@ -65,8 +65,8 @@ class AboutForm extends Component {
                 <h3>Need to get in touch?</h3>
                 <p>Whether you want to leave us feedback or make a special request, or just want to chat, we're here for what you've got to say.</p>
                 <div className="row">
-                    <div className="col-md-10">
-                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                    <div className="col">
+                        <LocalForm onSubmit={values => this.handleSubmit(values)} >
                             <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Full Name</Label>
                                 <Col md={8}>
@@ -90,7 +90,7 @@ class AboutForm extends Component {
                                         messages={{
                                             req: 'Required',
                                             minLength: 'Must be at least 2 chars.',
-                                            maxLength: 'Must be 15 chars of less.'
+                                            maxLength: 'Must be 15 chars or less.'
                                         }}
                                     />
                                 </Col>
@@ -112,12 +112,21 @@ class AboutForm extends Component {
                                             isNum
                                         }}
                                     />
-                                    {/* <Errors /> */}
+                                    <Errors
+                                        className="text-danger"
+                                        model=".phone"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            req: 'Required',
+                                            minLength: 'Must be at least 10 numbers.',
+                                            maxLength: 'Must be 12 numbers or less.',
+                                            isNum: 'Must be a phone number.'
+                                        }}
+                                    />
                                 </Col>
-                                {/* </Row> */}
 
-                                {/* <Row className="form-group"> */}
-                                <Label htmlFor="email" md={2}>Email</Label>
+                                <Label htmlFor="email" md={1}>Email</Label>
                                 <Col md={3}>
                                     <Control.text
                                         model=".email"
@@ -130,7 +139,16 @@ class AboutForm extends Component {
                                             validEmail
                                         }}
                                     />
-                                    {/* <Errors /> */}
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".email"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            req: 'Required',
+                                            validEmail: 'Invalid address.'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
 
@@ -144,12 +162,10 @@ class AboutForm extends Component {
                                         placeholder="Mailing Address"
                                         className="form-control"
                                     />
-                                    {/* <Errors /> */}
                                 </Col>
                             </Row>
 
                             <Row className="form-group">
-                                {/* <Label htmlFor="city" md={2}>City</Label> */}
                                 <Col md={{ size: 3, offset: 2 }}>
                                     <Control.text
                                         model=".city"
@@ -158,7 +174,6 @@ class AboutForm extends Component {
                                         placeholder="City"
                                         className="form-control"
                                     />
-                                    {/* <Errors /> */}
                                 </Col>
                                 <Label htmlFor="state" md={1}>State</Label>
                                 <Col md={2}>
@@ -222,12 +237,7 @@ class AboutForm extends Component {
                                         <option value="WV">West Virginia</option>
                                         <option value="WY">Wyoming</option>
                                     </Control.select>
-                                    {/* <Control.text 
-                                    // I need a dropdown menu of all the states
-                                    /> */}
-                                    {/* <Errors /> */}
                                 </Col>
-                                {/* <Label htmlFor="zip" md={2}>Zip</Label> */}
                                 <Col md={2}>
                                     <Control.text
                                         model=".zip"
@@ -236,7 +246,7 @@ class AboutForm extends Component {
                                         placeholder="Zip"
                                         className="form-control"
                                     />
-                                    {/* <Errors /> */}
+
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -254,6 +264,15 @@ class AboutForm extends Component {
                                         <option>By Phone</option>
                                         <option>Don't contact me</option>
                                     </Control.select>
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".contactType"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            req: 'Required'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
 
@@ -273,6 +292,17 @@ class AboutForm extends Component {
                                             maxLength: maxLength(500)
                                         }}
                                     />
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".feedback"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            req: 'Required',
+                                            minLength: 'Must be 20 chars or more.',
+                                            maxLength: 'Must be 500 chars or less.'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
 
@@ -288,7 +318,6 @@ class AboutForm extends Component {
                 </div>
 
             </div>
-
         );
     }
 }
