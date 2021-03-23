@@ -21,9 +21,9 @@ function About(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <img />
-                    <img />
-                    <img />
+                    <img src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
+                    <img src="assets/images/elviesBags.jpg" alt="Elvies Guatemalan bags."/>
+                    <img src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
                 </div>
             </div>
             <AboutForm />
