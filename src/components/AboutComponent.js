@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Label, Col, Row, Button } from 'reactstrap';
 
+const req = val => val && val.length;
+const maxLength = val => len => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
+const isNum = val => !isNaN(+val);
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 // might need to combine these compoents or switch how theyre rendered in one another and exported
 function About(props) {
@@ -61,7 +66,7 @@ class AboutForm extends Component {
                 <p>Whether you want to leave us feedback or make a special request, or just want to chat, we're here for what you've got to say.</p>
                 <div className="row">
                     <div className="col-md-10">
-                        <LocalForm>
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Full Name</Label>
                                 <Col md={8}>
@@ -71,8 +76,23 @@ class AboutForm extends Component {
                                         name="name"
                                         placeholder="Full Name"
                                         className="form-control"
+                                        validators={{
+                                            req,
+                                            minLength: minLength(2),
+                                            maxLength: maxLength(20)
+                                        }}
                                     />
-                                    {/* <Errors /> */}
+                                    <Errors
+                                        className="text-danger"
+                                        model=".name"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            req: 'Required',
+                                            minLength: 'Must be at least 2 chars.',
+                                            maxLength: 'Must be 15 chars of less.'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
 
@@ -85,6 +105,12 @@ class AboutForm extends Component {
                                         name="phone"
                                         placeholder="Phone Number"
                                         className="form-control"
+                                        validators={{
+                                            req,
+                                            minLength: minLength(10),
+                                            maxLength: maxLength(12),
+                                            isNum
+                                        }}
                                     />
                                     {/* <Errors /> */}
                                 </Col>
@@ -99,6 +125,10 @@ class AboutForm extends Component {
                                         name="email"
                                         placeholder="Email"
                                         className="form-control"
+                                        validators={{
+                                            req,
+                                            validEmail
+                                        }}
                                     />
                                     {/* <Errors /> */}
                                 </Col>
@@ -216,9 +246,13 @@ class AboutForm extends Component {
                                         model=".contactType"
                                         name="contactType"
                                         className="form-control"
+                                        validators={{
+                                            req
+                                        }}
                                     >
                                         <option>By Email</option>
                                         <option>By Phone</option>
+                                        <option>Don't contact me</option>
                                     </Control.select>
                                 </Col>
                             </Row>
@@ -233,6 +267,11 @@ class AboutForm extends Component {
                                         placeholder="Feedback"
                                         rows="5"
                                         className="form-control"
+                                        validators={{
+                                            req,
+                                            minLength: minLength(20),
+                                            maxLength: maxLength(500)
+                                        }}
                                     />
                                 </Col>
                             </Row>
