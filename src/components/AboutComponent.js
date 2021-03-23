@@ -12,18 +12,25 @@ const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 function About(props) {
     return (
         <React.Fragment>
+            <div className="container">
             <h1>About Us</h1>
             <hr />
-            <div className="container">
                 <div className="row">
                     <div className="col">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-                <div className="row">
-                    <img src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
-                    <img src="assets/images/elviesBags.jpg" alt="Elvies Guatemalan bags."/>
-                    <img src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
+                <div className="row border text-center mb-5 mt-3 ml-1" style={{overflow:"hidden"}}>
+                    <div className="col-lg-4">
+                        <img style={{height: 500}} src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
+                    </div>
+                    <div className="col-lg-4">
+                        <img style={{height: 500}} src="assets/images/elviesBags.jpg" alt="Elvies Guatemalan bags."/>
+                    </div>
+                    <div className="col-lg-4">
+                    
+                        <img style={{height: 500}} src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
+                    </div>
                 </div>
             </div>
             <AboutForm />
@@ -61,7 +68,7 @@ class AboutForm extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container mb-4">
                 <h3>Need to get in touch?</h3>
                 <p>Whether you want to leave us feedback or make a special request, or just want to chat, we're here for what you've got to say.</p>
                 <div className="row">
@@ -316,6 +323,7 @@ class AboutForm extends Component {
                         </LocalForm>
                     </div>
                 </div>
+            <hr />
 
             </div>
         );

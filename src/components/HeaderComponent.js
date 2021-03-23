@@ -8,6 +8,9 @@ import NavbarToggler from 'reactstrap/lib/NavbarToggler';
 import { NavLink } from 'react-router-dom';
 // import { Control } from 'react-redux-form';
 
+// should be able to make top change color w scroll
+// https://codesandbox.io/s/nifty-newton-f4j0j?file=/src/Header.js or https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
+
 class Header extends Component {
 
     constructor(props) {
@@ -41,7 +44,7 @@ class Header extends Component {
     render () {
         return (
             <React.Fragment>
-                <Navbar sticky="top" expand="md" bg="light" variant="light">
+                <Navbar sticky="top" expand="md">
                     <div className="container">
                         <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo"/></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
