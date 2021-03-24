@@ -15,23 +15,28 @@ const mapStateToProps = state => {
 };
 
 class Main extends Component {
-// is this still a class component
+
     render() {
-        const BlogPage = () => {
-            return(
-                <Blog 
-                    blogpost={this.props.blogposts.filter(blogpost => blogpost.id === +match.params.blogpostId)[0]}
-                    // or w/o the 0, not sure.
-                    // or as props, not sure
-                    addBlogPost={this.props.addBlogPost}
-                    // this will need to be set upl8r
-                />
-            );
-        };
-// is the withid one supposed to be my blogpage? Like did i make blogpage to mimic their withid one? idk, im real confused
+        // i dont think i need that. they have a func like this just for the homepage w the feature
+        // const BlogPage = () => {
+        //     return(
+        //         <Blog 
+        //             blogpost={this.props.blogposts.filter(blogpost => blogpost.id === +match.params.blogpostId)[0]}
+        //             // or w/o the 0, not sure.
+        //             // or as props, not sure
+        //             addBlogPost={this.props.addBlogPost}
+        //             // this will need to be set upl8r
+        //         />
+        //     );
+        // };
+
+// i think this is to render the indiv post
         const BlogWithId = ({match}) => {
             return(
-                <BlogInfo blogpost={this.props}
+                <IndivBlogPost 
+                    blogpost={this.props.blogposts.filter(blogpost => blogpost.id === +match.params.blogpostId)[0]}
+                    // could add a comment thing here l8r?
+                />
             );
         };
 
@@ -42,7 +47,7 @@ class Main extends Component {
                     <Route exact path='/about' component={About} />
                     <Route exact path='/blog' render={() => <Blog featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])} blogposts={this.props.blogposts} />} />
                     {/* use render if you need to pass state data */}
-                    <Route path='/blog/:blogId' component={BlogWithId}/>
+                    <Route path='/blog/:blogpostId' component={BlogWithId}/>
                 </Switch>
                 <Footer />
 </div>
@@ -50,4 +55,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
