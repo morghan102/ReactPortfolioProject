@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.abt-img {
+  /* max-width: 19rem; */
+  /* width: 23rem; */
+  overflow: hidden;
+  
+}
+
+.abt-img-container {
+  max-height: 28.7rem;
+  /* align-content: flex-end; */
+}
+.elvies-img {
+  /* align-self: flex-end; */
+  height: 28.7rem;
+  /* width: 100%; */
+}

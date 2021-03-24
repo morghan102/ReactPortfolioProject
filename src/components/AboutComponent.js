@@ -20,16 +20,16 @@ function About(props) {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-                <div className="row border text-center mb-5 mt-3 ml-1" style={{overflow:"hidden"}}>
-                    <div className="col-lg-4">
-                        <img style={{height: 500}} src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
+                <div className="row border text-center mb-5 mt-3 abt-img-container" style={{overflow:"hidden"}}>
+                    <div className="col-4">
+                        <img className="abt-img img-fluid" src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
                     </div>
-                    <div className="col-lg-4">
-                        <img style={{height: 500}} src="assets/images/elviesBags.jpg" alt="Elvies Guatemalan bags."/>
+                    <div className="col-4">
+                        <img className="abt-img img-fluid elvies-img" src="assets/images/elviesBags.jpg" alt="Elvies Guatemalan bags."/>
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-4">
                     
-                        <img style={{height: 500}} src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
+                        <img className="abt-img img-fluid" src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
                     </div>
                 </div>
             </div>
@@ -245,7 +245,7 @@ class AboutForm extends Component {
                                         <option value="WY">Wyoming</option>
                                     </Control.select>
                                 </Col>
-                                <Col md={2}>
+                                <Col className="mt-3 mt-md-0" md={2}>
                                     <Control.text
                                         model=".zip"
                                         id="zip"
