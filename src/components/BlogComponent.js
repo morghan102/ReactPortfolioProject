@@ -1,34 +1,63 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardHeader } from 'reactstrap';
+import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
-function renderBlog({blogposts}) {
-    if (blogposts) {
+// this isfor the main page
+function renderBlog({blogpost}) {
+    if (blogpost) {
         return(
             // this will be inside a comtainer
-            <div className="row">
-                <p>hello render blog is workign</p>
+            <Link to={`/blog/${blogpost.id}`}>
+                <div className="row">
+                    <p>hello render blog is workign</p>
 
-                <h4>{blogposts.title}</h4>
-                <div className="col">
-                    <Card>
-                        <CardImg src={blogposts.image}></CardImg>
-                    </Card>
+                    <h4>{blogpost.title}</h4>
+                    <div className="col">
+                        <Card>
+                            <CardImg src={blogpost.image}></CardImg>
+                        </Card>
+                    </div>
                 </div>
-            </div>
+            </Link>
         );
     }
 };
 
+// for main page
+function renderFeature({featuredPost}) {
+    if (featuredPost)
+    return (
+        <Link to={`/blog/${featuredPost.id}`}>
+            <div className="row">
+                <p>feature blog is workign</p>
+
+                <h4>{featuredPost.title}</h4>
+                <div className="col">
+                    <Card>
+                        <CardImg src={featuredPost.image}></CardImg>
+                    </Card>
+                </div>
+            </div>
+        </Link>
+    );
+}
+
+// this is for rendering the pecific blog post
+// function renderBlogItem({blogpost}) {
+//     return(
+
+//     );
+// }
 
 
-
+// main page
 function Blog(props) {
     if (props.blogposts){
     return(
         <div className="container">
             <p>hello function blog is working</p>
+            <renderFeature />
             <renderBlog />
         </div>
         // 1000px featured blog post - image to right w/ text to left
@@ -44,3 +73,6 @@ function Blog(props) {
 };
 
 export default Blog;
+
+// when i'm ready to render specific blog postings
+// https://learn.nucamp.co/mod/book/view.php?id=3148&chapterid=3745
