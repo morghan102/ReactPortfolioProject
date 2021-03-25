@@ -36,7 +36,8 @@ class Main extends Component {
                 // that comp might need a diff name?
                 <Blog 
                     blogpost={this.props.blogposts.filter(blogpost => blogpost.id === +match.params.blogpostId)[0]}
-                    // could add a comment thing here l8r?
+                    // could add a comment thing here l8r? if yes, refer to below:
+                    // https://learn.nucamp.co/mod/book/view.php?id=3230&chapterid=3762
                 />
             );
         };
@@ -57,3 +58,4 @@ class Main extends Component {
 }
 
 export default withRouter(connect(mapStateToProps)(Main));
+// mapdispatchtoprops is not here (unlike our nucampsite) bc i dont have an addcommment feature
