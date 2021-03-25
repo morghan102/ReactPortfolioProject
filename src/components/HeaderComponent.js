@@ -45,9 +45,10 @@ class Header extends Component {
         const headerTitle = this.props.location.pathname.slice(1);
         const style = {color: 'gray', textDecoration: 'none'};
         const actStyle = {color: 'black', textDecoration: 'none'};
+
         return (
             <React.Fragment>
-                <Navbar sticky="top" expand="md">
+                <Navbar sticky="top" light expand="md">
                     <div className="container">
                         <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo"/></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
@@ -128,7 +129,6 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>      
-        {/* </div> */}
               
             </React.Fragment>
         );

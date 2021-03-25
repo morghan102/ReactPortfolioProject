@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,20 +15,14 @@ code {
 }
 
 .abt-img {
-  /* max-width: 19rem; */
-  /* width: 23rem; */
   overflow: hidden;
-  
 }
 
 .abt-img-container {
   max-height: 28.7rem;
-  /* align-content: flex-end; */
 }
 .elvies-img {
-  /* align-self: flex-end; */
   height: 28.7rem;
-  /* width: 100%; */
 }
 
 .navbar {
@@ -35,12 +31,12 @@ code {
 
   .banner {
     text-transform: capitalize;
-    /* background-image: url("../public/assets/images/coffeeSpillWide.jpg"); */
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
     background-attachment: fixed;
+    font-family: 'Lato', sans-serif;
   }
   .bg-image .shade {
     text-shadow:2px 2px #333;
@@ -49,7 +45,6 @@ code {
   .blog h3 {
     color: #343a40;
     font-size: calc(100% + .75vw + .75vh);
-
   }
   .blog p {
     color: black;
