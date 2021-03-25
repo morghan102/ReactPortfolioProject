@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
 // adding alert would be neat
 // https://reactstrap.github.io/components/alerts/
-import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarToggler from 'reactstrap/lib/NavbarToggler';
 import { NavLink } from 'react-router-dom';

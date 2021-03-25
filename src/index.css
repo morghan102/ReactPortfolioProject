@@ -28,3 +28,6 @@ code {
   height: 28.7rem;
   /* width: 100%; */
 }
+
+.navbar {
+  background-color: rgba(255,255,255,0.75);}
