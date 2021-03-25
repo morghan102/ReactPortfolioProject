@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Main />
-          <CoffeeProducts />
+          {/* <CoffeeProducts /> */}
         </div>
       </BrowserRouter>
     </Provider>

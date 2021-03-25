@@ -55,7 +55,7 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem> 
-                                    <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
+                                    <NavLink className="nav-link" to="/products" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
                                         <i className="fa fa-tags fa-lg" /> Products
                                     </NavLink>
                                 </NavItem>

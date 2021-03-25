@@ -6,6 +6,7 @@ import Blog from './BlogComponent';
 
 import { Switch, Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
+import CoffeeProducts from './CoffeeProducts';
 
 const mapStateToProps = state => {
     return {
@@ -49,6 +50,7 @@ class Main extends Component {
                     <Route exact path='/blog' render={() => <Blog blogposts={this.props.blogposts} />} /> {/* featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])}  */}
                     {/* use render if you need to pass state data */}
                     <Route path='/blog/:blogpostId' component={BlogWithId}/>
+                    <Route exact path='/products' render={() => <CoffeeProducts /> } />
                 </Switch>
                 <Footer />
             </div>
