@@ -1,42 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-// this isfor the main page
-// this was crafted after the specific campsite rendering thing, so may need to toss
-function RenderBlogItem({blogpost}) {
-    // if (blogpost) {
-        return(
-            // this will be inside a comtainer
-                <div className="row">
-                    <p>hello render blog Item is workign</p>
-
-                    <Link to={`/blog/${blogpost.id}`}>
-                        <h4>{blogpost.title}</h4>
-                        <div className="col">
-                            <Card>
-                                <CardImg src={blogpost.image}></CardImg>
-                            </Card>
-                        </div>
-                </Link>
-            </div>
-        );
-    // }
-    // return <div />
-};
-
 // for main page
-function RenderFeature({featuredPost}) {
-    if (featuredPost) {
+function RenderFeature({feature}) {
+    if (feature) {
         return (
-            <Link to={`/blog/${featuredPost.id}`}>
+            <Link to={`/blog/${feature.id}`}>
                 <div className="row">
-                    <p>feature blog is workign {console.log(featuredPost.title)}</p>
+                    <p>feature blog is workign </p>
 
-                    <h4>{featuredPost.title}</h4>
+                    <h4>{feature.title}</h4>
                     <div className="col">
                         <Card>
-                            <CardImg src={featuredPost.image}></CardImg>
+                            <CardImg src={feature.image}></CardImg>
                         </Card>
                     </div>
                 </div>
@@ -49,56 +26,52 @@ function RenderFeature({featuredPost}) {
     }
 }
 
-// this is for rendering the pecific blog post
-// function renderBlogItem({blogpost}) {
-//     return(
 
-//     );
-// }
+function RenderBlogItem({blogpost}) {
+    // i am misunderstanding smth about the attributes of each item
+    // idk but this is kinda important
+    // if (blogpost.featured === false) {
+        return(
+                <div className="row mb-md-4 mb-1">
+                        <div className="col-6">
+                        <Link to={`/blog/${blogpost.id}`}>
+                                <h5>{blogpost.title}</h5>
+                            </Link>
+                        </div>
+                        <div className="col-6">
+                            <Link to={`/blog/${blogpost.id}`}>
 
+                                <img src={blogpost.image} style={{maxWidth: 300}}></img>
+                            </Link>
+                        </div>
+            </div>
+        );
+    // }
+};
 
 // main page
 function Blog(props) {
 
     const blog = props.blogposts.map(blogpost => {
         return (
-            <div key={blogpost.id} className="col-md-5 m-1">
+            // <div key={blogpost.id} className="row">
                 <RenderBlogItem blogpost={blogpost} />
-            </div>
+            //  </div>
         );
     });
 
+    const feature = props.blogposts.filter(blogpost => blogpost.featured);
+    // i tried
+    // const feature = props.blogposts.map((blogpost) => (
+    //     blogpost.featured ? blogpost : <div />
+    // ));
+
     return (
-        <div className="container">
-            <div className="row">
-                <RenderFeature featuredPost={props.featuredPost}/>
-            </div>
-            <div className="row">
-                <p>blog working</p>
-                {blog}
-            </div>
+        <div className="container container-fluid">
+            <RenderFeature feature={feature}/>
+            {blog}
         </div>
     );
-
-
-
-    // if (props.blogposts){
-    // return(
-    //     <div className="container">
-    //         <p>hello function blog is working</p>
-    //         <RenderFeature featuredPost={props.featuredPost}/>
-    //         <RenderBlog blogpost={props.blogpost}/>
-    //     </div>
-    //     // 1000px featured blog post - image to right w/ text to left
-    //     // posts take up full row, 1 col. not cards. images accompanying switch r or l, text in center
-
-    //     // can have this like the caMPITES component and rendering is a func
-    // );
-    // } else {
-    //     return(
-    //         <div />
-    //     );
-    // }
 };
 
 export default Blog;

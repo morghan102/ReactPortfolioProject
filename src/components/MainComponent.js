@@ -3,9 +3,8 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import About from './AboutComponent';
 import Blog from './BlogComponent';
-// import { BLOGPOSTS } from '../shared/blogposts';
 
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { Switch, Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -30,7 +29,7 @@ class Main extends Component {
         //     );
         // };
 
-// i think this is to render the indiv post
+// wtf is this for anyway?
         const BlogWithId = ({match}) => {
             return(
                 // that comp might need a diff name?
@@ -47,12 +46,12 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route exact path='/about' component={About} />
-                    <Route exact path='/blog' render={() => <Blog featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])} blogposts={this.props.blogposts} />} />
+                    <Route exact path='/blog' render={() => <Blog blogposts={this.props.blogposts} />} /> {/* featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])}  */}
                     {/* use render if you need to pass state data */}
                     <Route path='/blog/:blogpostId' component={BlogWithId}/>
                 </Switch>
                 <Footer />
-</div>
+            </div>
         );
     }
 }
