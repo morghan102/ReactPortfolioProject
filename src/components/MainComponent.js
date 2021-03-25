@@ -33,7 +33,8 @@ class Main extends Component {
 // i think this is to render the indiv post
         const BlogWithId = ({match}) => {
             return(
-                <IndivBlogPost 
+                // that comp might need a diff name?
+                <Blog 
                     blogpost={this.props.blogposts.filter(blogpost => blogpost.id === +match.params.blogpostId)[0]}
                     // could add a comment thing here l8r?
                 />
