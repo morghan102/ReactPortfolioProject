@@ -30,4 +30,28 @@ code {
 }
 
 .navbar {
-  background-color: rgba(255,255,255,0.75);}
+  background-color: rgba(255,255,255,0.75);
+}
+
+  .banner {
+    text-transform: capitalize;
+    /* background-image: url("../public/assets/images/coffeeSpillWide.jpg"); */
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
+  }
+  .bg-image .shade {
+    text-shadow:2px 2px #333;
+  }
+
+  .blog h3 {
+    color: #343a40;
+    font-size: calc(100% + .75vw + .75vh);
+
+  }
+  .blog p {
+    color: black;
+    font-size: calc(100% + .25vw);
+  }

@@ -4,7 +4,7 @@ import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader
 // https://reactstrap.github.io/components/alerts/
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarToggler from 'reactstrap/lib/NavbarToggler';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 // import { Control } from 'react-redux-form';
 
 // should be able to make top change color w scroll
@@ -41,6 +41,10 @@ class Header extends Component {
     }
 
     render () {
+        console.log(this)
+        const headerTitle = this.props.location.pathname.slice(1);
+        const style = {color: 'gray', textDecoration: 'none'};
+        const actStyle = {color: 'black', textDecoration: 'none'};
         return (
             <React.Fragment>
                 <Navbar sticky="top" expand="md">
@@ -50,29 +54,29 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
+                                    <NavLink className="nav-link" to="/home" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-home fa-lg" /> Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem> 
-                                    <NavLink className="nav-link" to="/products" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
+                                    <NavLink className="nav-link" to="/products" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-tags fa-lg" /> Products
                                     </NavLink>
                                 </NavItem>
                                 <NavItem> 
-                                    <NavLink className="nav-link" to="/about" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
+                                    <NavLink className="nav-link" to="/about" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-info fa-lg" /> About Us
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/blog" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}>
+                                    <NavLink className="nav-link" to="/blog" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-paper-plane fa-lg" /> Blog
                                     </NavLink>
                                 </NavItem>
                             </Nav>
                             <Nav navbar className="ml-auto">
                                     <NavItem className="mt-2">
-                                        <NavLink className="nav-link" to="/" style={{color: 'gray', textDecoration: 'none'}} activeStyle={{color: 'black', textDecoration: 'none'}}> 
+                                        <NavLink className="nav-link" to="/" style={style} activeStyle={actStyle}> 
                                             <i className="fa fa-shopping-cart fa-lg" />
                                         </NavLink>
                                     </NavItem>
@@ -114,8 +118,20 @@ class Header extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+
+                <div className="bg-image mb-5 pb-3">
+                    <div class="banner container-fluid pt-3" style={{backgroundImage: "url(../assets/images/coffeeSpillWide.jpg)"}}>
+                        <div class="row text-light">
+                            <div class="col-12 text-center mt-5">
+                                <h1 className="display-4 shade pb-5 mb-5 text-center text-light" >{headerTitle}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+        {/* </div> */}
+              
             </React.Fragment>
         );
     }
 }
-export default Header;
+export default withRouter(Header);

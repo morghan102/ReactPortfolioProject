@@ -10,7 +10,8 @@ import CoffeeProducts from './CoffeeProducts';
 
 const mapStateToProps = state => {
     return {
-        blogposts: state.blogposts
+        blogposts: state.blogposts,
+        headerTitle: state.pageTitle
     };
 };
 
@@ -46,6 +47,7 @@ class Main extends Component {
             <div>
                 <Header />
                 <Switch>
+                    
                     <Route exact path='/about' component={About} />
                     <Route exact path='/blog' render={() => <Blog blogposts={this.props.blogposts} />} /> {/* featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])}  */}
                     {/* use render if you need to pass state data */}

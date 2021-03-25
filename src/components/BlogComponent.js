@@ -3,7 +3,7 @@ import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 // for main page
-function RenderFeature({feature}) {
+function RenderFeature({ feature }) {
     if (feature) {
         return (
             <Link to={`/blog/${feature.id}`}>
@@ -27,25 +27,27 @@ function RenderFeature({feature}) {
 }
 
 
-function RenderBlogItem({blogpost}) {
+function RenderBlogItem({ blogpost }) {
     // i am misunderstanding smth about the attributes of each item
     // idk but this is kinda important
     // if (blogpost.featured === false) {
-        return(
-                <div className="row mb-md-4 mb-1">
-                        <div className="col-6">
-                        <Link to={`/blog/${blogpost.id}`}>
-                                <h5>{blogpost.title}</h5>
-                            </Link>
-                        </div>
-                        <div className="col-6">
-                            <Link to={`/blog/${blogpost.id}`}>
-
-                                <img src={blogpost.image} style={{maxWidth: 300}}></img>
-                            </Link>
-                        </div>
+    return (
+        <div className="row mb-md-4 mb-1 blog">
+            <div className="col-6">
+                <Link to={`/blog/${blogpost.id}`}>
+                    <h3>{blogpost.title}</h3>
+                </Link>
+                <hr />
+                <p>{blogpost.description}</p>
             </div>
-        );
+            <div className="col-6">
+                <Link to={`/blog/${blogpost.id}`}>
+
+                    <img src={blogpost.image} style={{ maxWidth: 300 }}></img>
+                </Link>
+            </div>
+        </div>
+    );
     // }
 };
 
@@ -55,7 +57,7 @@ function Blog(props) {
     const blog = props.blogposts.map(blogpost => {
         return (
             // <div key={blogpost.id} className="row">
-                <RenderBlogItem blogpost={blogpost} />
+            <RenderBlogItem blogpost={blogpost} />
             //  </div>
         );
     });
@@ -68,7 +70,7 @@ function Blog(props) {
 
     return (
         <div className="container container-fluid">
-            <RenderFeature feature={feature}/>
+            <RenderFeature feature={feature} />
             {blog}
         </div>
     );
