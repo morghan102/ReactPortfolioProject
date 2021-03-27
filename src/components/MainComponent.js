@@ -3,8 +3,9 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import About from './AboutComponent';
 import Blog from './BlogComponent';
+import Home from './HomeComponent';
 
-import { Switch, Route, withRouter} from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import CoffeeProducts from './CoffeeProducts';
 
@@ -47,12 +48,13 @@ class Main extends Component {
             <div>
                 <Header />
                 <Switch>
-                    
+                    <Route exact path='/home' render={() => <Home />}/>
                     <Route exact path='/about' component={About} />
                     <Route exact path='/blog' render={() => <Blog blogposts={this.props.blogposts} />} /> {/* featuredPost={this.props.blogposts.filter(blogpost => blogpost.featured[0])}  */}
                     {/* use render if you need to pass state data */}
                     <Route path='/blog/:blogpostId' component={BlogWithId}/>
                     <Route exact path='/products' render={() => <CoffeeProducts /> } />
+                    <Redirect to='/home' />
                 </Switch>
                 <Footer />
             </div>

@@ -41,7 +41,6 @@ class Header extends Component {
     }
 
     render () {
-        console.log(this)
         const headerTitle = this.props.location.pathname.slice(1);
         const style = {color: 'gray', textDecoration: 'none'};
         const actStyle = {color: 'black', textDecoration: 'none'};
