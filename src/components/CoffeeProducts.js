@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     Card, Button, CardImg, CardTitle, CardText, CardGroup,CardSubtitle, CardBody, Container } from 'reactstrap';
 
-const CoffeeProducts = (props) => {
+const CoffeeProducts = () => {
     return (
         <>
      <Container>

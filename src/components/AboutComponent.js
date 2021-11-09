@@ -9,7 +9,7 @@ const isNum = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 // might need to combine these compoents or switch how theyre rendered in one another and exported
-function About(props) {
+function About() {
     return (
         <React.Fragment>
             <div className="container">
