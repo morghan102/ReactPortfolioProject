@@ -1,3 +1,13 @@
+# TODO:
+1. Convert to class components.
+2. Complete cart.
+3. Complete home screen
+4. Add info page for each product (optional)
+5. Form submit working
+6. Connect firebase
+7. Add blogposts to Firebase
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
