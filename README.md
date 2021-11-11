@@ -12,7 +12,7 @@
 TIME:
 (this is not complete)
 11/9: 2hrs
-11/10: 10am-
+11/10: 10am-12:00
 
 
 

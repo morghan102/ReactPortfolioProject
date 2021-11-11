@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // for main page
 function RenderFeature({ feature }) {
@@ -75,6 +76,8 @@ function Blog(props) {
         </div>
     );
 };
+
+Blog = connect()(Blog);
 
 export default Blog;
 

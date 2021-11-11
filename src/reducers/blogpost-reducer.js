@@ -21,4 +21,6 @@ export default (state = {}, action) => {
         default:
             return state;
     }
+    //  All a reducer cares about is taking a thing, applying an action to a copy of that thing, and then returning the altered copy. 
+    // It doesn't know anything else about our application such as how state will be stored or applied in the UI. 
 };
