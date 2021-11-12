@@ -5,9 +5,18 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 // https://yourstory.com/2017/03/what-is-hero-image
 
-function Home() {
+function Home() {//change the name on the header from Home to like welcome or something
     return (
         <Container>
+            {/* maybe big image of Brad or the roaster or something?? */}
+
+
+
+
+
+
+            {/* this will be small and centered */}
+
             {/* //img classes dont do anuything i think */}
             {/* // img isnt centered in carousel box. box itself is centered */}
             {/* <Container className="container mt-5 pt-5 justify-content-center"> */}
@@ -37,7 +46,7 @@ function Home() {
                         <CardBody>
                             <CardTitle>Products</CardTitle>
                             <CardText>
-                            See what's new or choose between your favorites.
+                                See what's new or choose between your favorites.
                             </CardText>
                         </CardBody>
                         <CardFooter>
@@ -49,7 +58,7 @@ function Home() {
                         <CardBody>
                             <CardTitle>Blog</CardTitle>
                             <CardText>
-                            Learn about Fair-Trade and more!
+                                Learn about Fair-Trade and more!
                             </CardText>
                         </CardBody>
                         <CardFooter>
@@ -61,7 +70,7 @@ function Home() {
                         <CardBody>
                             <CardTitle>About Us</CardTitle>
                             <CardText>
-                            Learn about our wonderful company.
+                                Learn about our wonderful company.
                             </CardText>
                         </CardBody>
                         <CardFooter>

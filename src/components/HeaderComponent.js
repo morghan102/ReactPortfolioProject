@@ -82,7 +82,7 @@ class Header extends Component {
                                     </NavItem>
                                     <span className="ml-2 navbar-text">
                                     <Button outline onClick={this.toggleModal} style={{color: 'black'}}>
-                                        <i className="fa fa-sign-in fa-lg" /> Login
+                                        <i className="fa fa-sign-in fa-lg" /> Site Admin?
                                     </Button>
                                     {/* <Form inline>
                                         <FormControl type="text" placeholder="Search" length="5" className=""/>
