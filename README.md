@@ -12,7 +12,26 @@
 TIME:
 (this is not complete)
 11/9: 2hrs
-11/10: 10am-12:00
+11/10: 10am-12:00 12-12:30
+
+
+# Brad's Coffee Roastery
+Ecommerce React web app where clients can purchase bags of fresh, roasted coffee from a small, Maine artisan coffee roaster.
+
+# Motivation
+I used to work for Brad as a barista in a small coffee shop in Portland. He has since decided to move his business online. The goal for this website is to allow him to find new clients and collect orders efficiently online while not spending a lot on maintaining his online presence. 
+
+# Tech/Frameworks used
+- React
+- Bootstrap, React-Bootstrap, & Reactstrap
+- Firebase
+- Jest
+- React-Redux, Redux-Logger, & Redux-Thunk
+- React-Router
+- Many more!
+
+# License
+MIT Morghan102
 
 
 
