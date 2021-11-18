@@ -10,12 +10,17 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import firebase from "./firebase";
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers/blogpost-reducer';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import { reducer } from './reducers/blogpost-reducer';
 
 
-const store = createStore(reducer);//this is eventually rootReducer(?)
-
+const store = createStore(reducer, applyMiddleware(thunk, logger));//this is eventually rootReducer(?)
+console.log(store)
+store.subscribe(() =>
+  console.log(store.getState())
+);
 const rrfProps = {
   firebase,
   config: {
@@ -29,11 +34,11 @@ const rrfProps = {
 ReactDOM.render(
   <React.StrictMode>
     {/* top provider is redux: provides our Redux store's context */}
-    <Provider store={store}> 
-    {/* provides Firebase and Firestore context */}
-      <ReactReduxFirebaseProvider {...rrfProps}>
-        <App />
-      </ReactReduxFirebaseProvider>
+    <Provider store={store}>
+      {/* provides Firebase and Firestore context */}
+      {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
+      <App />
+      {/* </ReactReduxFirebaseProvider> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

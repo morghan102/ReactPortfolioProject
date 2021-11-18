@@ -5,6 +5,7 @@ import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from '../firebase';
+import Button from 'reactstrap/lib/Button';
 // import firestore database from './whereever firebase is.; in that fb file the db isnt named anything and i'm not super clear whats being exp
 
 
@@ -58,14 +59,17 @@ function RenderBlogItem({ blogpost }) {
 };
 
 // main page
-function Blog() {
+function Blog({ dispatch }) {
     const [loading, setLoading] = useState(false)
+    const [editing, setEditing] = useState(false)
     const [blogs, setBlogs] = useState([])
+    const [selectedBlog, setSelectedBlog] = useState(null)
+    const [formVisibleOnPage, setFormVisibleOnPage] = useState(false)//for editing and deleting? if the user is logged in as admin
 
     // Start the fetch operation as soon as the page loads
     window.addEventListener('load', () => {
         fetchBlogs();
-        console.log('hi')
+        console.log('loading from blogComp')
     });
 
     // Fetch the required data using the get() method
@@ -82,6 +86,37 @@ function Blog() {
             });
             setLoading(false);
         })
+    }
+
+    //these 3 consts shd only be visible to admins
+    const addBlogs = (newBlog) => {
+        // const { dispatch } = this.props; //BY DEF WE'RE SUPPOSED TO GET PROPS.DISPATCH not sure how/where to get dispatch since this is a functional component
+        const { id, title, featured, image, postText, description } = newBlog;
+        const action = {
+            type: 'ADD_BLOGPOST',
+            id: id,
+            title: title,
+            featured: featured,
+            image: image,
+            postText: postText,
+            description: description,
+        }
+        dispatch(action);
+        setFormVisibleOnPage(false) //where do i set to true?
+    }
+    // const mapDispatchToProps = (dispatch) => ({
+    //     onSubmit: (e) => dispatch(onSubmit(e))
+    // })
+
+
+    const editBlogs = (blog) => {
+        setEditing(true);
+        setSelectedBlog(blog)
+
+    }
+    const deleteBlogs = (blog) => {
+        setSelectedBlog(blog)
+
     }
 
 
@@ -107,11 +142,17 @@ function Blog() {
             } */}
 
             {blogItems}
+            <Button onClick={() => addBlogs({ id: 7, title: 'hi', featured: false, image: 'src', description: 'kjbdck', postText: 'ksdjbcdkjb' })} />
         </div>
     );
 };
 
-Blog = connect()(Blog); //he return value of the connect() function is the TicketControl component itself, but this time we will have powerful new tools at our disposal: the dispatch() and mapStateToProps() functions.
+const mapStateToProps = ({}) => {
+
+}
+
+//mdtp should be 2nd arg of connect
+Blog = connect(mapStateToProps)(Blog); //he return value of the connect() function is the TicketControl component itself, but this time we will have powerful new tools at our disposal: the dispatch() and mapStateToProps() functions.
 // BUT when is mstp and dispatch used?
 export default Blog;
 
