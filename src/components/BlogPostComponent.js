@@ -36,7 +36,9 @@ function BlogPost(props) {
         );
     } else {
         return (
-            <div />
+            <div>
+                
+            </div>
         );
     }
 };

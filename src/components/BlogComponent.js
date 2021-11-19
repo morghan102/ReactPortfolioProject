@@ -5,6 +5,7 @@ import { Card, CardImg } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from '../firebase';
+import PropTypes from 'prop-types';
 import Button from 'reactstrap/lib/Button';
 // import firestore database from './whereever firebase is.; in that fb file the db isnt named anything and i'm not super clear whats being exp
 
@@ -35,6 +36,7 @@ import Button from 'reactstrap/lib/Button';
 
 
 function RenderBlogItem({ blogpost }) {
+    console.log(blogpost)
     // i am misunderstanding smth about the attributes of each item
     // idk but this is kinda important
     // if (blogpost.featured === false) {
@@ -63,6 +65,7 @@ function Blog({ dispatch }) {
     const [loading, setLoading] = useState(false)
     const [editing, setEditing] = useState(false)
     const [blogs, setBlogs] = useState([])
+    // const [storeBlogs, setS
     const [selectedBlog, setSelectedBlog] = useState(null)
     const [formVisibleOnPage, setFormVisibleOnPage] = useState(false)//for editing and deleting? if the user is logged in as admin
 
@@ -89,11 +92,11 @@ function Blog({ dispatch }) {
     }
 
     //these 3 consts shd only be visible to admins
-    const addBlogs = (newBlog) => {
-        // const { dispatch } = this.props; //BY DEF WE'RE SUPPOSED TO GET PROPS.DISPATCH not sure how/where to get dispatch since this is a functional component
+    const addOrEditBlogs = (newBlog) => {
+// shd be able to edit and add here biut idk how?
         const { id, title, featured, image, postText, description } = newBlog;
         const action = {
-            type: 'ADD_BLOGPOST',
+            type: 'ADD_OR_EDIT_BLOGPOST',
             id: id,
             title: title,
             featured: featured,
@@ -104,26 +107,46 @@ function Blog({ dispatch }) {
         dispatch(action);
         setFormVisibleOnPage(false) //where do i set to true?
     }
-    // const mapDispatchToProps = (dispatch) => ({
-    //     onSubmit: (e) => dispatch(onSubmit(e))
-    // })
 
+    const editSelectedBlog = (id) => {
+        const selectedBlog = this.props.blogs[id];
+        setSelectedBlog(selectedBlog);
+      }
 
-    const editBlogs = (blog) => {
-        setEditing(true);
-        setSelectedBlog(blog)
-
+    // const editBlogs = (blog, newBlog) => { //THIS WONT WORK AS IS!!!
+    //     const { id, title, featured, image, postText, description } = blog;
+    //     // const { id, title, featured, image, postText, description } = newBlog;
+    //     // this function will only handle updating the redux state
+    //     // setEditing(true); //set these in an onclick function. 
+    //     // setSelectedBlog(blog)
+    //     const action = {
+    //         type: 'EDIT_BLOGPOST',
+    //         id: id,
+    //         title: title,
+    //         featured: featured,
+    //         image: image,
+    //         postText: postText,
+    //         description: description,
+    //     }
+    //     dispatch(action);
+    //     setFormVisibleOnPage(false) //where do i set to true?
+    // }
+    const deleteBlogs = (id) => {
+        const action = {
+            type: 'DELETE_BLOGPOST',
+            id: id
+        }
+        dispatch(action);
+        setSelectedBlog(null)
     }
-    const deleteBlogs = (blog) => {
-        setSelectedBlog(blog)
-
-    }
-
-
+    
+let state;
+console.log(state)
     const blogItems = blogs.map(blogpost => {
         return (
             <div key={blogpost.id} className="row">
-                <RenderBlogItem blogpost={blogpost} />
+                <RenderBlogItem blogpost={state !== undefined ? state : blogpost} /> 
+                {/* blogpost refers to local state from the firestore. I need it to reder to the state in redux */}
             </div>
         );
     });
@@ -142,13 +165,16 @@ function Blog({ dispatch }) {
             } */}
 
             {blogItems}
-            <Button onClick={() => addBlogs({ id: 7, title: 'hi', featured: false, image: 'src', description: 'kjbdck', postText: 'ksdjbcdkjb' })} />
+            <Button onClick={() => addOrEditBlogs({ id: 7, title: 'hi', featured: false, image: 'src', description: 'kjbdck', postText: 'ksdjbcdkjb' })} />
         </div>
     );
 };
-
-const mapStateToProps = ({}) => {
-
+Blog.propTypes = {
+    blogs: PropTypes.object
+}
+const mapStateToProps = (state) => {
+    // console.log(state) i only have smth in state after clicking the btn
+    return { blogs: state } //idk if this is right
 }
 
 //mdtp should be 2nd arg of connect
