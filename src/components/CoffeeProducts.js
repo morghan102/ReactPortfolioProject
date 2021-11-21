@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
-import {
-    Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container
-} from 'reactstrap';
+import { Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container, Row } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
 import firebase, { storage, firestore } from '../firebase';
 
 
@@ -10,7 +9,12 @@ const CoffeeProducts = () => {
     const [products, setProducts] = useState([])
     let storageRef = storage.ref()
     const [pictureURLs, setPictureURLs] = useState([])
+    const [show, setShow] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState()
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
     //loads pictures into picutreUrls
     useEffect(() => {
 
@@ -30,38 +34,63 @@ const CoffeeProducts = () => {
         // }
         // loadImages()
     }, [])
-    // console.log(pictureURLs)
     const fetchProducts = async () => {
         let res = firestore.collection('products')
         const data = await res.get();
         let newArr = [];
         data.docs.forEach(item => {
-            console.log(item.data())
             newArr.push(item.data())
         })
         setProducts(newArr)
     }
 
+    const handleModalOpen = (prod) => {
+        handleShow(true)
+        setSelectedProduct(prod)
+    };
+
+    const handleAdd = () => {
+        console.log('add to shopping cart')
+    }
+
+    const ModalEle = () => {
+        return selectedProduct ? (
+            <div className='overlay'>
+                <Modal show={show} onHide={handleClose} centered>
+                    <Modal.Header closeButton={true}>
+                        <ModalTitle>{selectedProduct.title}</ModalTitle>
+                    </Modal.Header>
+                    <ModalBody><p>{selectedProduct.fullDescription}</p></ModalBody>
+                    <ModalFooter>
+                        <Button variant='danger' onClick={handleClose}>Close</Button>
+                        <Button variant='primary' onClick={() => handleAdd()}>Add to Cart</Button>
+                        {/* btn colors and the closeBtn */}
+                    </ModalFooter>
+                </Modal>
+            </div>
+        ) : null;
+    }
 
 
     return (
         <>
-        {/* need to make this a flexbox */}
             <Container>
-                <CardGroup>
+                <Row className='flex list-group-sm list-group-flush-md ' xs={1} md={2} lg={3}>
                     {products ? products.map((prod) => {
                         return (
-                            <Card>
-                                <CardImg top width="100%" src={prod.img} alt={prod.title + ' coffee'} />
-                                <CardBody>
-                                    <CardTitle tag="h5">{prod.title.toUpperCase()}</CardTitle>
-                                    <CardText>{prod.description}</CardText>
-                                    <Button color="warning">Button</Button>
-                                </CardBody>
-
-                            </Card>
+                            <>
+                                <Card>
+                                    <CardImg top className='' width="100%" src={prod.img} alt={prod.title + ' coffee'} />
+                                    <CardBody>
+                                        <CardTitle tag="h5">{prod.title.toUpperCase()}</CardTitle>
+                                        <CardText>{prod.description}</CardText>
+                                        {/* make so that the btn is a modal giving more info and option to select the roast */}
+                                        <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
+                                    </CardBody>
+                                </Card>
+                                <ModalEle />
+                            </>
                         )
-                        // console.log(prod)
                     }) : null}
                     {/* <Card>
                         <CardImg top width="100%" src={pictureURLs[0]} alt="Bolivian coffee beans"/>
@@ -115,7 +144,7 @@ const CoffeeProducts = () => {
                             <Button color="warning">Button</Button>
                         </CardBody>
                     </Card> */}
-                </CardGroup>
+                </Row>
             </Container>
         </>
 
