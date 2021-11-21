@@ -19,7 +19,7 @@ const CoffeeProducts = () => {
 
 
         // const fetchImages = async () => {
-        //     let result = await storageRef.child('productImages').listAll();
+        //     let result = await storageRef.child('productpage').listAll();
         //     let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
         //     return Promise.all(urlPromises)
         // }
@@ -30,34 +30,31 @@ const CoffeeProducts = () => {
         // }
         // loadImages()
     }, [])
+    // console.log(pictureURLs)
     const fetchProducts = async () => {
         let res = firestore.collection('products')
         const data = await res.get();
-        // console.log(data)
+        let newArr = [];
         data.docs.forEach(item => {
-            // console.log(item.data())
-            let newArr = products
-            setProducts(newArr.push(item.data()))
+            console.log(item.data())
+            newArr.push(item.data())
         })
-        console.log(typeof products) //obj here
+        setProducts(newArr)
     }
 
 
 
     return (
         <>
-            {/* iterate over the product list AND the prod images */}
-            {/* images will have to be named for the product or this wont work */}
+        {/* need to make this a flexbox */}
             <Container>
                 <CardGroup>
-                    {/* number here */}
-                    {console.log( typeof products)}
-                    {/* {products.length !== 0 ? products.forEach((prod) => {
+                    {products ? products.map((prod) => {
                         return (
                             <Card>
-                                <CardImg top width="100%" src={prod.img.path} alt={prod.description} />
+                                <CardImg top width="100%" src={prod.img} alt={prod.title + ' coffee'} />
                                 <CardBody>
-                                    <CardTitle tag="h5">{prod.title}</CardTitle>
+                                    <CardTitle tag="h5">{prod.title.toUpperCase()}</CardTitle>
                                     <CardText>{prod.description}</CardText>
                                     <Button color="warning">Button</Button>
                                 </CardBody>
@@ -65,7 +62,7 @@ const CoffeeProducts = () => {
                             </Card>
                         )
                         // console.log(prod)
-                    }) : null} */}
+                    }) : null}
                     {/* <Card>
                         <CardImg top width="100%" src={pictureURLs[0]} alt="Bolivian coffee beans"/>
                         <CardBody>
