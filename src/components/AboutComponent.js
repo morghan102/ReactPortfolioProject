@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Label, Col, Row, Button } from 'reactstrap';
+import { storage } from '../firebase';
+
 
 const req = val => val && val.length;
 const maxLength = val => len => !val || (val.length <= len);
@@ -10,18 +12,49 @@ const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 // might need to combine these compoents or switch how theyre rendered in one another and exported
 function About() {
+
+    let storageRef = storage.ref()
+    const [pictureURLs, setPictureURLs] = useState([])
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            let result = await storageRef.child('aboutpage').listAll();
+            let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
+            return Promise.all(urlPromises)
+        }
+
+        const loadImages = async () => {
+            const urls = await fetchImages()
+            setPictureURLs(urls)
+        }
+        loadImages()
+    }, [])
+// meybe better to make the images an object with one prop=picuteURL, 1 altText, 1 classNames/styling
+// i think i can make a reference inside firebase to the img i want in storage. i will try
+    const Images = () => {
+        pictureURLs.forEach((pic) => {
+            return (
+                <div className="col-4">
+                    <img className="abt-img img-fluid" src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter." />
+                </div>
+            );
+        })
+    }
+
+
     return (
         <React.Fragment>
             <div className="container">
-            <h1>About Us</h1>
-            <hr />
+                <h1>About Us</h1>
+                <hr />
                 <div className="row">
                     <div className="col">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-                <div className="row border text-center mb-5 mt-3 abt-img-container" style={{overflow:"hidden"}}>
-                    <div className="col-4">
+                <div className="row border text-center mb-5 mt-3 abt-img-container" style={{ overflow: "hidden" }}>
+                    <Images />
+                    {/* <div className="col-4">
                         <img className="abt-img img-fluid" src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
                     </div>
                     <div className="col-4">
@@ -30,7 +63,7 @@ function About() {
                     <div className="col-4">
                     
                         <img className="abt-img img-fluid" src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <AboutForm />
@@ -146,7 +179,7 @@ class AboutForm extends Component {
                                             validEmail
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
                                         model=".email"
                                         show="touched"
@@ -271,7 +304,7 @@ class AboutForm extends Component {
                                         <option>By Phone</option>
                                         <option>Don't contact me</option>
                                     </Control.select>
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
                                         model=".contactType"
                                         show="touched"
@@ -299,7 +332,7 @@ class AboutForm extends Component {
                                             maxLength: maxLength(500)
                                         }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
                                         model=".feedback"
                                         show="touched"
@@ -323,7 +356,7 @@ class AboutForm extends Component {
                         </LocalForm>
                     </div>
                 </div>
-            <hr />
+                <hr />
 
             </div>
         );

@@ -17,7 +17,7 @@ import { reducer } from './reducers/blogpost-reducer';
 
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));//this is eventually rootReducer(?)
-console.log(store)
+// console.log(store)
 store.subscribe(() =>
   console.log(store.getState())
 );

@@ -15,7 +15,8 @@ TIME:
 11/10: 10am-12:00 12-12:30
 11:15: 2:30-6
 11/17: 3hrs
-11/18: 45min, 8:45
+11/18: 45min, 8:45-10
+11/20: 4:30
 
 # Brad's Coffee Roastery
 Ecommerce React web app where clients can purchase bags of fresh, roasted coffee from a small, Maine artisan coffee roaster.

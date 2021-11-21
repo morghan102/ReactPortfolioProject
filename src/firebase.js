@@ -14,10 +14,10 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig);
-firebase.firestore();
+const firestore = firebase.firestore();
 const storage = firebase.storage();
 
-export { storage, firebase as default };
+export { storage, firestore, firebase as default };
 
 // this is where it told me hpw to set this up
 // https://www.learnhowtoprogram.com/react-part-time-react-track/react-with-nosql-part-1/

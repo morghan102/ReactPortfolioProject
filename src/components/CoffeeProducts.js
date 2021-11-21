@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import {
     Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container
 } from 'reactstrap';
-import firebase, { storage } from '../firebase';
+import firebase, { storage, firestore } from '../firebase';
 
 
 
@@ -13,26 +13,61 @@ const CoffeeProducts = () => {
 
     //loads pictures into picutreUrls
     useEffect(() => {
-        const fetchImages = async () => {
-            let result = await storageRef.child('productImages').listAll();
-            let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
-            return Promise.all(urlPromises)
-        }
 
-        const loadImages = async () => {
-            const urls = await fetchImages()
-            setPictureURLs(urls)
-        }
-        loadImages()
+        fetchProducts()
+
+
+
+        // const fetchImages = async () => {
+        //     let result = await storageRef.child('productImages').listAll();
+        //     let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
+        //     return Promise.all(urlPromises)
+        // }
+
+        // const loadImages = async () => {
+        //     const urls = await fetchImages()
+        //     setPictureURLs(urls)
+        // }
+        // loadImages()
     }, [])
+    const fetchProducts = async () => {
+        let res = firestore.collection('products')
+        const data = await res.get();
+        // console.log(data)
+        data.docs.forEach(item => {
+            // console.log(item.data())
+            let newArr = products
+            setProducts(newArr.push(item.data()))
+        })
+        console.log(typeof products) //obj here
+    }
+
+
 
     return (
         <>
+            {/* iterate over the product list AND the prod images */}
+            {/* images will have to be named for the product or this wont work */}
             <Container>
                 <CardGroup>
-                    <Card>
-                        {/* <CardImg top width="100%" src="../assets/images/Bolivian.jpeg" alt="Bolivian coffee beans" /> */}
-                        <CardImg top width="100%" src={pictureURLs[0]}/>
+                    {/* number here */}
+                    {console.log( typeof products)}
+                    {/* {products.length !== 0 ? products.forEach((prod) => {
+                        return (
+                            <Card>
+                                <CardImg top width="100%" src={prod.img.path} alt={prod.description} />
+                                <CardBody>
+                                    <CardTitle tag="h5">{prod.title}</CardTitle>
+                                    <CardText>{prod.description}</CardText>
+                                    <Button color="warning">Button</Button>
+                                </CardBody>
+
+                            </Card>
+                        )
+                        // console.log(prod)
+                    }) : null} */}
+                    {/* <Card>
+                        <CardImg top width="100%" src={pictureURLs[0]} alt="Bolivian coffee beans"/>
                         <CardBody>
                             <CardTitle tag="h5">Bolivian Coffee</CardTitle>
                             <CardText>Great tasting Bolivian coffee.  Good to the last drop.</CardText>
@@ -82,7 +117,7 @@ const CoffeeProducts = () => {
                             <CardText>What if the French had nothing to do with this roast?</CardText>
                             <Button color="warning">Button</Button>
                         </CardBody>
-                    </Card>
+                    </Card> */}
                 </CardGroup>
             </Container>
         </>
