@@ -51,9 +51,10 @@ const CoffeeProducts = () => {
 
     const handleAdd = () => {
         console.log('add to shopping cart')
+        handleClose()
     }
 
-    const ModalEle = () => {
+    const ModalProduct = () => {
         return selectedProduct ? (
             <div className='overlay'>
                 <Modal show={show} onHide={handleClose} centered>
@@ -65,6 +66,7 @@ const CoffeeProducts = () => {
                         <Button variant='danger' onClick={handleClose}>Close</Button>
                         <Button variant='primary' onClick={() => handleAdd()}>Add to Cart</Button>
                         {/* btn colors and the closeBtn */}
+                        {/* EVENTUALLY make this a full screen modal that has picture of the farm its from, maybe farmers too. More like the html version */}
                     </ModalFooter>
                 </Modal>
             </div>
@@ -88,7 +90,7 @@ const CoffeeProducts = () => {
                                         <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
                                     </CardBody>
                                 </Card>
-                                <ModalEle />
+                                <ModalProduct />
                             </>
                         )
                     }) : null}

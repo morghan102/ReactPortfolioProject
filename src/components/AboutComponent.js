@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-import { Label, Col, Row, Button } from 'reactstrap';
+import { Label, Col, Row, Button, Container } from 'reactstrap';
 import { storage } from '../firebase';
 
 
@@ -17,26 +17,29 @@ function About() {
     const [pictureURLs, setPictureURLs] = useState([])
 
     useEffect(() => {
-        const fetchImages = async () => {
-            let result = await storageRef.child('aboutpage').listAll();
-            let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
-            return Promise.all(urlPromises)
-        }
+        if (pictureURLs.length === 0) {
+            const fetchImages = async () => {
+                let result = await storageRef.child('aboutpage').listAll();
+                let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
+                return Promise.all(urlPromises)
+            }
 
-        const loadImages = async () => {
-            const urls = await fetchImages()
-            setPictureURLs(urls)
+            const loadImages = async () => {
+                const urls = await fetchImages()
+                setPictureURLs(urls)
+            }
+            loadImages()
         }
-        loadImages()
     }, [])
-// meybe better to make the images an object with one prop=picuteURL, 1 altText, 1 classNames/styling
-// i think i can make a reference inside firebase to the img i want in storage. i will try
+    console.log(pictureURLs)
+    // meybe better to make the images an object with one prop=picuteURL, 1 altText, 1 classNames/styling
+    // i think i can make a reference inside firebase to the img i want in storage. i will try
     const Images = () => {
-        pictureURLs.forEach((pic) => {
+        return pictureURLs.map((pic) => {
             return (
-                <div className="col-4">
-                    <img className="abt-img img-fluid" src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter." />
-                </div>
+                // <div className="col-4">
+                <img className="col-lg-4 abt-img img-fluid" src={pic} alt="About picture" style={{ height: '28.7rem', width: '25%' }} />
+                // </div>
             );
         })
     }
@@ -44,7 +47,7 @@ function About() {
 
     return (
         <React.Fragment>
-            <div className="container">
+            <Container>
                 <h1>About Us</h1>
                 <hr />
                 <div className="row">
@@ -52,8 +55,9 @@ function About() {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-                <div className="row border text-center mb-5 mt-3 abt-img-container" style={{ overflow: "hidden" }}>
-                    <Images />
+                {/* 'flex '  */}
+                <Row className="flex list-group-sm list-group-flush-md mb-3" xs={1} md={2} lg={3} style={{ overflow: "hidden" }}>
+                    {pictureURLs ? <Images /> : null}
                     {/* <div className="col-4">
                         <img className="abt-img img-fluid" src="assets/images/outsideShopWinter.jpg" alt="View of Others cafe during winter."/>
                     </div>
@@ -64,15 +68,15 @@ function About() {
                     
                         <img className="abt-img img-fluid" src="assets/images/gelatoServing.jpg" alt="Two women serving gelato outside the shop."/>
                     </div> */}
-                </div>
-            </div>
+                </Row>
+            </Container>
             <AboutForm />
         </React.Fragment>
     );
 }
 
 class AboutForm extends Component {
-
+    // functional component && form submits to a 
     constructor(props) {
         super(props);
 
