@@ -1,11 +1,11 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Label, Col, Row, Button, Container } from 'reactstrap';
-import { storage } from '../firebase';
+import { storage, firestore } from '../firebase';
 
 
 const req = val => val && val.length;
-const maxLength = val => len => !val || (val.length <= len);
+const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 const isNum = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
@@ -99,7 +99,28 @@ class AboutForm extends Component {
     }
 
     handleSubmit(values) {
-        alert("you have submitted " + JSON.stringify(values));
+        // values.preventDefault()//might need to dlete this
+        alert('Thank you for your feedback! Expect a reply within 3-5 business days if you wished to be contacted.');
+        // firestore.settings({ //apparently you get an errr w/o this but i just get an email with it!
+        //     timestampsInSnapshots: true
+        // });
+        const formRef = firestore.collection('contactForm').add({
+            values
+        });
+        this.setState({
+            name: '',
+            phoneNum: '',
+            email: '',
+            contactType: 'By Email',
+            feedback: '',
+            touched: {
+                name: false,
+                phoneNum: false,
+                email: false,
+                contactType: false,
+                feedback: false
+            }
+        })
     }
 
 
@@ -134,12 +155,13 @@ class AboutForm extends Component {
                                         messages={{
                                             req: 'Required',
                                             minLength: 'Must be at least 2 chars.',
-                                            maxLength: 'Must be 15 chars or less.'
+                                            // maxLength: 'Must be 15 chars or less.'
                                         }}
                                     />
                                 </Col>
                             </Row>
-
+                            {/* const maxLength = val => len => !val || (val.length <= len); */}
+                            {/* const minLength = len => val => val && (val.length >= len); */}
                             <Row className="form-group">
                                 <Label htmlFor="phone" md={2}>Phone Num.</Label>
                                 <Col md={3}>
@@ -306,6 +328,7 @@ class AboutForm extends Component {
                                     >
                                         <option>By Email</option>
                                         <option>By Phone</option>
+                                        <option>By Mail</option>
                                         <option>Don't contact me</option>
                                     </Control.select>
                                     <Errors
