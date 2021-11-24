@@ -1,7 +1,9 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Label, Col, Row, Button, Container } from 'reactstrap';
+import { send } from 'emailjs-com';
 import { storage, firestore } from '../firebase';
+// import { emailjs_service_id, emailjs_user_id, emailjs_template_id } from '../email';
 
 
 const req = val => val && val.length;
@@ -104,9 +106,9 @@ class AboutForm extends Component {
         // firestore.settings({ //apparently you get an errr w/o this but i just get an email with it!
         //     timestampsInSnapshots: true
         // });
-        const formRef = firestore.collection('contactForm').add({
-            values
-        });
+        const formRef = firestore.collection('contactForm').add({ values });
+        this.sendMessage(values);
+        // not resetting state
         this.setState({
             name: '',
             phoneNum: '',
@@ -120,7 +122,25 @@ class AboutForm extends Component {
                 contactType: false,
                 feedback: false
             }
-        })
+        });
+        console.log(values)
+    }
+
+    sendMessage(values) {
+        send(
+            // not sure why ic ouldnt put these in email.js externally...
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            values,
+            process.env.REACT_APP_EMAILJS_USER_ID
+        )
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+            })
+            .catch((err) => {
+                console.log('FAILED...', err);
+            });
+
     }
 
 
