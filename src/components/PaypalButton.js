@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import scriptLoader from "react-async-script-loader";
-// import Car from "../assets/img/car.jpg";
-// import Spinner from "./Spinner";
+
 
  const CLIENT = {
    sandbox:
@@ -11,7 +10,7 @@ import scriptLoader from "react-async-script-loader";
      "your_production_key"
  };
 
- const CLIENT_ID = 'AUHnautksch9eYKuxyD9kNNyeBYLmfgRpkQf6PXapNzIeXfaPHQGq1Cxs_yFgzNDAxAIFAPTHkhToUIY';
+ const CLIENT_ID = process.env.REACT_APP_PAYPAL_CLIENT_ID;
 //    process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
 
 let PayPalButton = null;
