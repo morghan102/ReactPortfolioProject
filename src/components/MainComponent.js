@@ -4,6 +4,7 @@ import Footer from './FooterComponent';
 import About from './AboutComponent';
 import Blog from './BlogComponent';
 import Home from './HomeComponent';
+import Cart from './CartComponent';
 // import blogposts from '../shared/blogposts';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -54,6 +55,7 @@ function Main() {
                 {/* use render if you need to pass state data */}
                 <Route path='/blog/:blogpostId' component={BlogWithId} />
                 <Route exact path='/products' render={() => <CoffeeProducts />} />
+                <Route exact path='/cart' render={() => <Cart />} />
                 <Redirect to='/home' />
             </Switch>
             <Footer />

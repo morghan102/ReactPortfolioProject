@@ -14,6 +14,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { reducer } from './reducers/blogpost-reducer';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));//this is eventually rootReducer(?)
@@ -30,15 +31,24 @@ const rrfProps = {
   createFirestoreInstance
 }
 
+const initialOptions = {
+  "client-id": "sb",
+  currency: "USD",
+  intent: "capture",
+  "data-client-token": "abc123xyz==",
+};
+
 
 ReactDOM.render(
   <React.StrictMode>
     {/* top provider is redux: provides our Redux store's context */}
     <Provider store={store}>
-      {/* provides Firebase and Firestore context */}
-      {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
-      <App />
-      {/* </ReactReduxFirebaseProvider> */}
+      <PayPalScriptProvider options={initialOptions}>
+        {/* provides Firebase and Firestore context */}
+        {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
+        <App />
+        {/* </ReactReduxFirebaseProvider> */}
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

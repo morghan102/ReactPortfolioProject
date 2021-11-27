@@ -76,7 +76,7 @@ class Header extends Component {
                             </Nav>
                             <Nav navbar className="ml-auto">
                                     <NavItem className="mt-2">
-                                        <NavLink className="nav-link" to="/" style={style} activeStyle={actStyle}> 
+                                        <NavLink className="nav-link" to="/cart" style={style} activeStyle={actStyle}> 
                                             <i className="fa fa-shopping-cart fa-lg" />
                                         </NavLink>
                                     </NavItem>

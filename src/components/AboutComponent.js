@@ -129,6 +129,7 @@ class AboutForm extends Component {
     sendMessage(values) {
         send(
             // not sure why ic ouldnt put these in email.js externally...
+            // will need t configure these values to client's email
             process.env.REACT_APP_EMAILJS_SERVICE_ID,
             process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
             values,

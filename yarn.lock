@@ -2091,6 +2091,30 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@paypal/paypal-js@^4.1.0":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-4.2.1.tgz#350efe38962a94f440d34c44514fe80b8a13bb19"
+  integrity sha512-5b+UykL8+WNOEWHgC2nGJUR9EMmRJNspVBjT7knZcItTP9sQeQ7lCGoM5yubFDMeVmhmCZDtJDASpwlo9VOcJg==
+  dependencies:
+    promise-polyfill "^8.2.1"
+
+"@paypal/react-paypal-js@^7.4.2":
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.4.2.tgz#ede939987a021344be09d7466d7c28667bdb9c29"
+  integrity sha512-NYE5SopmMK80h0/hYIr3//iaIjGNHTFxRE9aTo2LzNik75WHu/skUggowHwZHpYWgLi6NYvz7WawRSnesjk6Sw==
+  dependencies:
+    "@paypal/paypal-js" "^4.1.0"
+    "@paypal/sdk-constants" "^1.0.110"
+
+"@paypal/sdk-constants@^1.0.110":
+  version "1.0.111"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.111.tgz#f75a77b5a7aa1ab9f9ac255605979dbc00158990"
+  integrity sha512-be/EbIb4SaMsO2nm9BhAxwpO2b38RtT65HuO8y5VU4TnzyLkunowD7E5b0a6M+YvjsdX5NCN6yCrAgqxNBpm6g==
+  dependencies:
+    cross-domain-utils "^2.0.10"
+    hi-base32 "^0.5.0"
+    zalgo-promise "^1.0.28"
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
@@ -4547,6 +4571,13 @@ create-react-context@^0.3.0:
     gud "^1.0.0"
     warning "^4.0.3"
 
+cross-domain-utils@^2.0.10:
+  version "2.0.38"
+  resolved "https://registry.yarnpkg.com/cross-domain-utils/-/cross-domain-utils-2.0.38.tgz#2eaf321c4dfdb61596805ca4233fde4400cb6377"
+  integrity sha512-zZfi3+2EIR9l4chrEiXI2xFleyacsJf8YMLR1eJ0Veb5FTMXeJ3DpxDjZkto2FhL/g717WSELqbptNSo85UJDw==
+  dependencies:
+    zalgo-promise "^1.0.11"
+
 cross-spawn@7.0.3, cross-spawn@^7.0.0, cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -6545,6 +6576,11 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
+hi-base32@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.1.tgz#1279f2ddae2673219ea5870c2121d2a33132857e"
+  integrity sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==
+
 history@^4.9.0:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/history/-/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
@@ -6565,6 +6601,11 @@ hmac-drbg@^1.0.0:
     hash.js "^1.0.3"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
+
+hoist-non-react-statics@^1.0.3:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+  integrity sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=
 
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
@@ -10128,6 +10169,11 @@ promise-polyfill@8.1.3:
   resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.1.3.tgz#8c99b3cf53f3a91c68226ffde7bde81d7f904116"
   integrity sha512-MG5r82wBzh7pSKDRa9y+vllNHz3e3d4CNj1PQE4BQYxLme0gKYYBm9YENq+UkEikyZ0XbiGWxYlVw3Rl9O/U8g==
 
+promise-polyfill@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.1.tgz#1fa955b325bee4f6b8a4311e18148d4e5b46d254"
+  integrity sha512-3p9zj0cEHbp7NVUxEYUWjQlffXqnXaZIMPkAO7HhFh8u5636xLRDHOUo2vpWSK0T2mqm6fKLXYn1KP6PAZ2gKg==
+
 promise@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.1.0.tgz#697c25c3dfe7435dd79fcd58c38a135888eaf05e"
@@ -10358,6 +10404,13 @@ react-app-polyfill@^2.0.0:
     raf "^3.4.1"
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
+
+react-async-script-loader@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-async-script-loader/-/react-async-script-loader-0.3.0.tgz#c742b3ca25e08ba61ab7eb64371f814027692b86"
+  integrity sha1-x0KzyiXgi6Yat+tkNx+BQCdpK4Y=
+  dependencies:
+    hoist-non-react-statics "^1.0.3"
 
 react-bootstrap@^2.0.2:
   version "2.0.2"
@@ -13331,3 +13384,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zalgo-promise@^1.0.11, zalgo-promise@^1.0.28:
+  version "1.0.48"
+  resolved "https://registry.yarnpkg.com/zalgo-promise/-/zalgo-promise-1.0.48.tgz#9e33eef502d5ed9f5a09fc5728c833c3e87afa2e"
+  integrity sha512-LLHANmdm53+MucY9aOFIggzYtUdkSBFxUsy4glTTQYNyK6B3uCPWTbfiGvSrEvLojw0mSzyFJ1/RRLv+QMNdzQ==
