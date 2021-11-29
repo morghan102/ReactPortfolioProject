@@ -5,21 +5,20 @@ import Checkout from "./CheckoutComponent";
 
 
 export default function Cart() {
-
     // ui for the cart itself and whatevers been ordered
     const [readyToPay, setReadyToPay] = useState(false)
 
+// const ItemsInCart = () => {
+//     return (
 
+//     )
+// }
 
+// const PriceTotal = () => {
+//     return (
 
-
-
-
-
-
-
-
-
+//     )
+// }
 
 
 
@@ -27,8 +26,8 @@ export default function Cart() {
         <Container>
             {!readyToPay ?
                 <>
-                    <ShoppingCart />
-                    <PriceTotal />
+                    {/* <ItemsInCart />
+                    <PriceTotal /> */}
                 </>
                 // {/* // if they click ready tcheckout, render checkiuot btns */}
                 : <Container style={{ textAlign: 'center' }} >

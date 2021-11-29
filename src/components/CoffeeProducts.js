@@ -1,11 +1,12 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 import { Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container, Row } from 'reactstrap';
 import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
 import firebase, { storage, firestore } from '../firebase';
-
+import { AppContext } from '../context';
 
 
 const CoffeeProducts = () => {
+    const { dispatchEvent, productsInCart } = useContext(AppContext);
     const [products, setProducts] = useState([])
     let storageRef = storage.ref()
     const [pictureURLs, setPictureURLs] = useState([])
@@ -14,13 +15,11 @@ const CoffeeProducts = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
     //loads pictures into picutreUrls
     useEffect(() => {
 
         fetchProducts()
-
-
 
         // const fetchImages = async () => {
         //     let result = await storageRef.child('productpage').listAll();
@@ -34,6 +33,8 @@ const CoffeeProducts = () => {
         // }
         // loadImages()
     }, [])
+
+
     const fetchProducts = async () => {
         let res = firestore.collection('products')
         const data = await res.get();
@@ -49,8 +50,11 @@ const CoffeeProducts = () => {
         setSelectedProduct(prod)
     };
 
-    const handleAdd = () => {
-        console.log('add to shopping cart')
+    const handleAdd = (prod) => {
+        let newArr = productsInCart;
+        newArr.push(prod);
+        dispatchEvent('ADD_ITEM_TO_CART', newArr)
+        console.log(productsInCart)
         handleClose()
     }
 
@@ -64,7 +68,7 @@ const CoffeeProducts = () => {
                     <ModalBody><p>{selectedProduct.fullDescription}</p></ModalBody>
                     <ModalFooter>
                         <Button variant='danger' onClick={handleClose}>Close</Button>
-                        <Button variant='primary' onClick={() => handleAdd()}>Add to Cart</Button>
+                        <Button variant='primary' onClick={() => handleAdd(selectedProduct)}>Add to Cart</Button>
                         {/* btn colors and the closeBtn */}
                         {/* EVENTUALLY make this a full screen modal that has picture of the farm its from, maybe farmers too. More like the html version */}
                     </ModalFooter>

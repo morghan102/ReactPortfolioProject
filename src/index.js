@@ -14,7 +14,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { reducer } from './reducers/blogpost-reducer';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));//this is eventually rootReducer(?)
@@ -43,12 +42,12 @@ ReactDOM.render(
   <React.StrictMode>
     {/* top provider is redux: provides our Redux store's context */}
     <Provider store={store}>
-      {/* <PayPalScriptProvider options={initialOptions}> */}
+        {/* <PayPalScriptProvider options={initialOptions}> */}
         {/* provides Firebase and Firestore context */}
         {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
         <App />
         {/* </ReactReduxFirebaseProvider> */}
-      {/* </PayPalScriptProvider> */}
+        {/* </PayPalScriptProvider> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
