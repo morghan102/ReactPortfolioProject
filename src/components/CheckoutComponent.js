@@ -163,16 +163,19 @@ import { Button, Row, Container, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
 // This values are the props in the UI
-const amount = "2";
-const currency = "USD";
-const style = { "layout": "vertical" };
+
 // Custom component to wrap the PayPalButtons and handle currency changes
 
 
 
-export default function Checkout() {
+export default function Checkout(props) {
   const [paid, setPaid] = useState(false)
   let history = useHistory();
+  const amount = props.subtotal;
+  const currency = "USD";
+  const style = { "layout": "vertical" };
+
+
 
   const PaymentSuccessful = () => {
     if (paid) return (
@@ -277,19 +280,19 @@ export default function Checkout() {
 
   return (
     // <div style={{ maxWidth: "750px", minHeight: "200px" }}>
-      <PayPalScriptProvider
-        options={{
-          "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
-          components: "buttons",
-          currency: "USD"
-        }}
-      >
-        <ButtonWrapper
-          currency={currency}
-          showSpinner={false}
-        />
-        <PaymentSuccessful />
-      </PayPalScriptProvider>
+    <PayPalScriptProvider
+      options={{
+        "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
+        components: "buttons",
+        currency: "USD"
+      }}
+    >
+      <ButtonWrapper
+        currency={currency}
+        showSpinner={false}
+      />
+      <PaymentSuccessful />
+    </PayPalScriptProvider>
     // </div>
   );
 }

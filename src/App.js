@@ -22,13 +22,13 @@ function App() {
       //   return
       case 'ADD_ITEM_TO_CART':
         setProductsInCart(payload);
+        console.log(payload)
         return
       default:
         return;
     }
   }
-
-
+  
 
   return (
     // <Provider store={store}>

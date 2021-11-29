@@ -1,5 +1,5 @@
 import React, { Component, useContext, useEffect, useState } from 'react';
-import { Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container, Row } from 'reactstrap';
+import { Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container, Row, Col } from 'reactstrap';
 import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
 import firebase, { storage, firestore } from '../firebase';
 import { AppContext } from '../context';
@@ -50,33 +50,61 @@ const CoffeeProducts = () => {
         setSelectedProduct(prod)
     };
 
-    const handleAdd = (prod) => {
+    const handleAdd = (item) => {
         let newArr = productsInCart;
-        newArr.push(prod);
-        dispatchEvent('ADD_ITEM_TO_CART', newArr)
-        console.log(productsInCart)
+        // newArr.push([`$${prod.price}`, prod.title, quantity, roast]);
+        newArr.push(item)
+            dispatchEvent('ADD_ITEM_TO_CART', newArr)
+        // console.log(productsInCart)
         handleClose()
     }
 
     const ModalProduct = () => {
+        let quantity = 1;
+        let roast = 'light';
+
+
         return selectedProduct ? (
             <div className='overlay'>
                 <Modal show={show} onHide={handleClose} centered>
                     <Modal.Header closeButton={true}>
                         <ModalTitle>{selectedProduct.title}</ModalTitle>
                     </Modal.Header>
-                    <ModalBody><p>{selectedProduct.fullDescription}</p></ModalBody>
+                    <ModalBody>
+                        <p>{selectedProduct.fullDescription}</p>
+                        <p>${selectedProduct.price}/lb</p>
+                        <Row>
+                            <Col>
+                                <label>
+                                    Quantity:
+                                    <input type="number" min={1} placeholder={1} onChange={(num) => quantity = parseInt(num.target.value)} />
+                                </label>
+                            </Col>
+                            <Col>
+                                <label>
+                                    Roast:
+                                    <select onChange={(val) => roast = val.target.value}>
+                                        <option value="light">Light</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="fullCity">Full City</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </label>
+                            </Col>
+                        </Row>
+                    </ModalBody>
                     <ModalFooter>
+                        <Button variant='primary' onClick={() => handleAdd({ 'title': selectedProduct.title, 'price': selectedProduct.price, 'quantity': quantity, 'roast': roast })}>Add to Cart</Button>
                         <Button variant='danger' onClick={handleClose}>Close</Button>
-                        <Button variant='primary' onClick={() => handleAdd(selectedProduct)}>Add to Cart</Button>
                         {/* btn colors and the closeBtn */}
                         {/* EVENTUALLY make this a full screen modal that has picture of the farm its from, maybe farmers too. More like the html version */}
                     </ModalFooter>
                 </Modal>
             </div>
         ) : null;
+        console.log(quantity)
     }
-
 
     return (
         <>
@@ -90,6 +118,7 @@ const CoffeeProducts = () => {
                                     <CardBody>
                                         <CardTitle tag="h5">{prod.title.toUpperCase()}</CardTitle>
                                         <CardText>{prod.description}</CardText>
+                                        <CardText>${prod.price}/lb</CardText>
                                         {/* make so that the btn is a modal giving more info and option to select the roast */}
                                         <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
                                     </CardBody>
