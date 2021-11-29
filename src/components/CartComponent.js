@@ -1,26 +1,40 @@
-// import { PayPalButtons } from "@paypal/react-paypal-js";
-import PaypalButton from './PaypalButton';
 import React, { useState } from "react";
-import { Container } from "reactstrap";
+import { Container, Row } from "reactstrap";
+import Checkout from "./CheckoutComponent";
 
-function Cart() {
 
-    const [showPaypal, setShowPaypal] = useState(false);
+
+export default function Cart() {
+
+    // ui for the cart itself and whatevers been ordered
+    const [readyToPay, setReadyToPay] = useState(false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <Container>
-            {showPaypal ? <PaypalButton />
-                : <div className="main">
-                    <h2> Buy this Mercedes at a giveaway price (Super Cheap) </h2>
-                    {/* <img alt="Mercedes G-Wagon" src={Car} /> */}
-                    <h3>
-                        <b>$200</b>
-                    </h3>
-                    <button onClick={() => setShowPaypal(true)}> Pay </button>
-                </div>
+            {!readyToPay ?
+                <>
+                    <ShoppingCart />
+                    <PriceTotal />
+                </>
+                // {/* // if they click ready tcheckout, render checkiuot btns */}
+                : <Container style={{ textAlign: 'center' }} >
+                    <Checkout />
+                </Container>
             }
         </Container>
     )
 }
-
-export default Cart;

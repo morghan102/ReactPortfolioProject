@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
+import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 // adding alert would be neat
 // https://reactstrap.github.io/components/alerts/
 import 'bootstrap/dist/css/bootstrap.min.css';

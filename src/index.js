@@ -31,24 +31,24 @@ const rrfProps = {
   createFirestoreInstance
 }
 
-const initialOptions = {
-  "client-id": "sb",
-  currency: "USD",
-  intent: "capture",
-  "data-client-token": "abc123xyz==",
-};
+// const initialOptions = { //not sure if i want the scriptprovider here or in the cart
+//   "client-id": "sb",
+//   currency: "USD",
+//   intent: "capture",
+//   "data-client-token": "abc123xyz==",
+// };
 
 
 ReactDOM.render(
   <React.StrictMode>
     {/* top provider is redux: provides our Redux store's context */}
     <Provider store={store}>
-      <PayPalScriptProvider options={initialOptions}>
+      {/* <PayPalScriptProvider options={initialOptions}> */}
         {/* provides Firebase and Firestore context */}
         {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
         <App />
         {/* </ReactReduxFirebaseProvider> */}
-      </PayPalScriptProvider>
+      {/* </PayPalScriptProvider> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
