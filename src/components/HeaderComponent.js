@@ -114,10 +114,17 @@ class Header extends Component {
                     </ModalBody>
                 </Modal>
 
-                <div class="row text-light banner container-fluid pt-3 bg-image mb-5 pb-3" style={{ backgroundImage: "url(../assets/images/coffeeSpillWide.jpg)" }}>
-                    <div class="col-12 text-center mt-5">
-                        <h1 className="display-4 shade pb-5 mb-5 text-center text-light" >{headerTitle}</h1>
-                    </div>
+                <div className="row text-light banner container-fluid pt-3 bg-image mb-5 pb-3" style={{ backgroundImage: "url(../assets/images/coffeeSpillWide.jpg)" }}>
+                    {headerTitle === 'home' ?
+                        <div className='col-12 mt-5 display-4 '>
+                            <div className='text-center banner-text'>
+                                <h1 className="display-4 shade mb-5 text-center text-light">Others! Roasting</h1>
+                                <p className="lead shade">A responsible, fair-trade coffee roastery</p>
+                                <p className="lead shade pb-3">Beans made to order!</p>
+                            </div>
+                        </div>
+                        : <h1 className="col-12 text-center mt-5 display-4 shade pb-5 mb-5 text-light" >{headerTitle}</h1>
+                    }
                 </div>
 
             </React.Fragment>
