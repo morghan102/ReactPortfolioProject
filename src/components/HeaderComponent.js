@@ -40,16 +40,16 @@ class Header extends Component {
         event.preventDefault();
     }
 
-    render () {
+    render() {
         const headerTitle = this.props.location.pathname.slice(1);
-        const style = {color: 'gray', textDecoration: 'none'};
-        const actStyle = {color: 'black', textDecoration: 'none'};
+        const style = { color: 'gray', textDecoration: 'none' };
+        const actStyle = { color: 'black', textDecoration: 'none' };
 
         return (
             <React.Fragment>
                 <Navbar sticky="top" light expand="md">
                     <div className="container">
-                        <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo"/></NavbarBrand>
+                        <NavbarBrand className="ml-auto" href="/"><img src="/assets/images/logo.jpg" height="40" width="40" alt="Others logo" /></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
@@ -58,12 +58,12 @@ class Header extends Component {
                                         <i className="fa fa-home fa-lg" /> Home
                                     </NavLink>
                                 </NavItem>
-                                <NavItem> 
+                                <NavItem>
                                     <NavLink className="nav-link" to="/products" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-tags fa-lg" /> Products
                                     </NavLink>
                                 </NavItem>
-                                <NavItem> 
+                                <NavItem>
                                     <NavLink className="nav-link" to="/about" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-info fa-lg" /> About Us
                                     </NavLink>
@@ -75,20 +75,15 @@ class Header extends Component {
                                 </NavItem>
                             </Nav>
                             <Nav navbar className="ml-auto">
-                                    <NavItem className="mt-2">
-                                        <NavLink className="nav-link" to="/cart" style={style} activeStyle={actStyle}> 
-                                            <i className="fa fa-shopping-cart fa-lg" />
-                                        </NavLink>
-                                    </NavItem>
-                                    <span className="ml-2 navbar-text">
-                                    <Button outline onClick={this.toggleModal} style={{color: 'black'}}>
+                                <NavItem className="mt-2">
+                                    <NavLink className="nav-link" to="/cart" style={style} activeStyle={actStyle}>
+                                        <i className="fa fa-shopping-cart fa-lg" />
+                                    </NavLink>
+                                </NavItem>
+                                <span className="ml-2 navbar-text">
+                                    {/* <Button outline onClick={this.toggleModal} style={{color: 'black'}}>
                                         <i className="fa fa-sign-in fa-lg" /> Site Admin?
-                                    </Button>
-                                    {/* <Form inline>
-                                        <FormControl type="text" placeholder="Search" length="5" className=""/>
-                                        <Button variant="outline-success">Search</Button>
-                                    </Form> 
-                                    I cant figure out how to add the search bar, considering removing it entirely*/}
+                                    </Button> */}
                                 </span>
                             </Nav>
                         </Collapse>
@@ -102,16 +97,16 @@ class Header extends Component {
                             <FormGroup>
                                 <Label htmlFor="username">Username</Label>
                                 <Input type="text" id="username" name="username" innerRef={input => this.username = input} />
-                                            {/* the innerref  attr is needed, set w a callback function w the value of the input field is passed */}
-                                            {/* this.the property is then set to the value of the input field */}
+                                {/* the innerref  attr is needed, set w a callback function w the value of the input field is passed */}
+                                {/* this.the property is then set to the value of the input field */}
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="password">Password</Label>
-                                <Input type="Password" id="password" name="password" innerRef={input => this.password = input}/>
+                                <Input type="Password" id="password" name="password" innerRef={input => this.password = input} />
                             </FormGroup>
                             <FormGroup check>
                                 <Label check>
-                                    <Input type="checkbox" name="remember" innerRef={input => this.remember = input}/> Remember me
+                                    <Input type="checkbox" name="remember" innerRef={input => this.remember = input} /> Remember me
                                 </Label>
                             </FormGroup>
                             <Button type="submit" value="submit" color="primary">Login</Button>
@@ -119,16 +114,12 @@ class Header extends Component {
                     </ModalBody>
                 </Modal>
 
-                <div className="bg-image mb-5 pb-3">
-                    <div class="banner container-fluid pt-3" style={{backgroundImage: "url(../assets/images/coffeeSpillWide.jpg)"}}>
-                        <div class="row text-light">
-                            <div class="col-12 text-center mt-5">
-                                <h1 className="display-4 shade pb-5 mb-5 text-center text-light" >{headerTitle}</h1>
-                            </div>
-                        </div>
+                <div class="row text-light banner container-fluid pt-3 bg-image mb-5 pb-3" style={{ backgroundImage: "url(../assets/images/coffeeSpillWide.jpg)" }}>
+                    <div class="col-12 text-center mt-5">
+                        <h1 className="display-4 shade pb-5 mb-5 text-center text-light" >{headerTitle}</h1>
                     </div>
-                </div>      
-              
+                </div>
+
             </React.Fragment>
         );
     }

@@ -40,6 +40,7 @@ export default function Cart() {
         return (
             <Container>
                 <p>{subtotal}</p>
+                {/* what about taxes???????? */}
             </Container>
         )
     }

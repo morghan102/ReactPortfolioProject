@@ -163,7 +163,7 @@ console.log(state)
             {/* {loading ? <p>Loading!</p>
                 : { blogItems }
             } */}
-
+            <h1>Coming soon!</h1>
             {blogItems}
             <Button onClick={() => addOrEditBlogs({ id: 7, title: 'hi', featured: false, image: 'src', description: 'kjbdck', postText: 'ksdjbcdkjb' })} />
         </div>
