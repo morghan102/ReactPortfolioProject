@@ -5,6 +5,8 @@ import { AppContext } from './context';
 // import { Provider } from 'react-redux';
 // import { ConfigureStore } from './redux/configureStore';
 
+import FetchImages from './shared/firebaseFetchImages';
+
 import './App.css';
 
 
@@ -12,7 +14,7 @@ import './App.css';
 
 function App() {
 
-
+  const [pictureURLs, setPictureURLs] = useState([])
   const [productsInCart, setProductsInCart] = useState([])
 
   const dispatchEvent = (actionType, payload) => {
@@ -28,12 +30,12 @@ function App() {
         return;
     }
   }
-  
+
 
   return (
     // <Provider store={store}>
     <BrowserRouter>
-      <AppContext.Provider value={{ productsInCart, dispatchEvent }}>
+      <AppContext.Provider value={{ productsInCart, dispatchEvent, pictureURLs }}>
 
         <div className="App">
           <Main />

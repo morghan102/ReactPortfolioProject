@@ -49,9 +49,9 @@ function Home() {//change the name on the header from Home to like welcome or so
                                 See what's new or choose between your favorites.
                             </CardText>
                         </CardBody>
-                        <CardFooter>
+                        {/* <CardFooter>
                             <small className="text-muted">Last updated 3 mins ago</small>
-                        </CardFooter>
+                        </CardFooter> */}
                     </Card>
                     <Card>
                         <CardImg src="../assets/images/arabica.jpg" />
@@ -61,9 +61,9 @@ function Home() {//change the name on the header from Home to like welcome or so
                                 Learn about Fair-Trade and more!
                             </CardText>
                         </CardBody>
-                        <CardFooter>
+                        {/* <CardFooter>
                             <small className="text-muted">Last updated 3 mins ago</small>
-                        </CardFooter>
+                        </CardFooter> */}
                     </Card>
                     <Card>
                         <CardImg src="../assets/images/arabica.jpg" />
@@ -73,9 +73,9 @@ function Home() {//change the name on the header from Home to like welcome or so
                                 Learn about our wonderful company.
                             </CardText>
                         </CardBody>
-                        <CardFooter>
+                        {/* <CardFooter>
                             <small className="text-muted">Last updated 3 mins ago</small>
-                        </CardFooter>
+                        </CardFooter> */}
                     </Card>
                 </CardGroup>
             </Row>

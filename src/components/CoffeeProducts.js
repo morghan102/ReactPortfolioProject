@@ -11,10 +11,10 @@ const CoffeeProducts = () => {
     let storageRef = storage.ref()
     const [pictureURLs, setPictureURLs] = useState([])
     const [show, setShow] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState()
+    const [selectedProduct, setSelectedProduct] = useState(null)
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
 
     //loads pictures into picutreUrls
     useEffect(() => {
@@ -46,28 +46,32 @@ const CoffeeProducts = () => {
     }
 
     const handleModalOpen = (prod) => {
-        handleShow(true)
         setSelectedProduct(prod)
+        setShow(true)
     };
+
+    const handleCloseModal = () => {
+        setSelectedProduct(null);
+        setShow(false);
+    }
 
     const handleAdd = (item) => {
         let newArr = productsInCart;
         // newArr.push([`$${prod.price}`, prod.title, quantity, roast]);
         newArr.push(item)
-            dispatchEvent('ADD_ITEM_TO_CART', newArr)
+        dispatchEvent('ADD_ITEM_TO_CART', newArr)
         // console.log(productsInCart)
-        handleClose()
+        handleCloseModal()
     }
 
     const ModalProduct = () => {
         let quantity = 1;
         let roast = 'light';
 
-
         return selectedProduct ? (
             <div className='overlay'>
-                <Modal show={show} onHide={handleClose} centered>
-                    <Modal.Header closeButton={true}>
+                <Modal show={show} onHide={handleCloseModal} centered>
+                    <Modal.Header closeButton>
                         <ModalTitle>{selectedProduct.title}</ModalTitle>
                     </Modal.Header>
                     <ModalBody>
@@ -96,7 +100,7 @@ const CoffeeProducts = () => {
                     </ModalBody>
                     <ModalFooter>
                         <Button variant='primary' onClick={() => handleAdd({ 'title': selectedProduct.title, 'price': selectedProduct.price, 'quantity': quantity, 'roast': roast })}>Add to Cart</Button>
-                        <Button variant='danger' onClick={handleClose}>Close</Button>
+                        <Button variant='danger' onClick={handleCloseModal}>Close</Button>
                         {/* btn colors and the closeBtn */}
                         {/* EVENTUALLY make this a full screen modal that has picture of the farm its from, maybe farmers too. More like the html version */}
                     </ModalFooter>
@@ -123,10 +127,11 @@ const CoffeeProducts = () => {
                                         <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
                                     </CardBody>
                                 </Card>
-                                <ModalProduct />
                             </>
                         )
                     }) : null}
+                        <ModalProduct />
+
                     {/* <Card>
                         <CardImg top width="100%" src={pictureURLs[0]} alt="Bolivian coffee beans"/>
                         <CardBody>
