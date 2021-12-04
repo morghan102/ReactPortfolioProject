@@ -1,6 +1,6 @@
 import React, { Component, useContext, useEffect, useState } from 'react';
 import { Card, Button, CardImg, CardTitle, CardText, CardGroup, CardSubtitle, CardBody, Container, Row, Col } from 'reactstrap';
-import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
+import { Alert, Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
 import firebase, { storage, firestore } from '../firebase';
 import { AppContext } from '../context';
 
@@ -11,6 +11,7 @@ const CoffeeProducts = () => {
     let storageRef = storage.ref()
     const [pictureURLs, setPictureURLs] = useState([])
     const [show, setShow] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null)
 
     // const handleClose = () => setShow(false);
@@ -60,8 +61,19 @@ const CoffeeProducts = () => {
         // newArr.push([`$${prod.price}`, prod.title, quantity, roast]);
         newArr.push(item)
         dispatchEvent('ADD_ITEM_TO_CART', newArr)
-        // console.log(productsInCart)
         handleCloseModal()
+        alertCountdown()
+    }
+
+    const alertCountdown = () => {
+        setShowAlert(true)
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 3000);
+    }
+
+    const capWord = string => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     const ModalProduct = () => {
@@ -71,23 +83,23 @@ const CoffeeProducts = () => {
         return selectedProduct ? (
             <div className='overlay'>
                 <Modal show={show} onHide={handleCloseModal} centered>
-                    <Modal.Header closeButton>
-                        <ModalTitle>{selectedProduct.title}</ModalTitle>
+                    <Modal.Header>
+                        <ModalTitle>{capWord(selectedProduct.title)}</ModalTitle>
                     </Modal.Header>
                     <ModalBody>
-                        <p>{selectedProduct.fullDescription}</p>
+                        <p>{capWord(selectedProduct.fullDescription)}</p>
                         <p>${selectedProduct.price}/lb</p>
                         <Row>
                             <Col>
                                 <label>
-                                    Quantity:
-                                    <input type="number" min={1} placeholder={1} onChange={(num) => quantity = parseInt(num.target.value)} />
+                                    Quantity: <br />
+                                    <input type="number" min={1} placeholder={1} onChange={(num) => quantity = parseInt(num.target.value)} className={'h-50 mt-2 w-50'} />
                                 </label>
                             </Col>
                             <Col>
                                 <label>
-                                    Roast:
-                                    <select onChange={(val) => roast = val.target.value}>
+                                    Roast:<br />
+                                    <select onChange={(val) => roast = val.target.value} className={'mt-2 w-100 h-100'}>
                                         <option value="light">Light</option>
                                         <option value="medium">Medium</option>
                                         <option value="fullCity">Full City</option>
@@ -107,30 +119,38 @@ const CoffeeProducts = () => {
                 </Modal>
             </div>
         ) : null;
-        console.log(quantity)
     }
+
 
     return (
         <>
+            <Alert show={showAlert} variant={'success'} className="d-flex justify-content-center mb-5">
+                <Alert.Heading>Item added to cart!</Alert.Heading>
+            </Alert>
+
+
             <Container>
-                <Row className='flex list-group-sm list-group-flush-md ' xs={1} md={2} lg={3}>
+                <Row className='flex list-group-sm list-group-flush-md' xs={1} md={2} lg={3}>
                     {products ? products.map((prod) => {
                         return (
                             <>
                                 <Card>
                                     <CardImg top className='' width="100%" src={prod.img} alt={prod.title + ' coffee'} />
                                     <CardBody>
-                                        <CardTitle tag="h5">{prod.title.toUpperCase()}</CardTitle>
+                                        <CardTitle tag="h5">{capWord(prod.title)}</CardTitle>
                                         <CardText>{prod.description}</CardText>
                                         <CardText>${prod.price}/lb</CardText>
                                         {/* make so that the btn is a modal giving more info and option to select the roast */}
-                                        <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
+
                                     </CardBody>
+                                    <Row style={{justifyContent: 'center', marginBottom: 10}}>
+                                        <Button color="warning" onClick={() => handleModalOpen(prod)}>Choose Your Roast</Button>
+                                        </Row>
                                 </Card>
                             </>
                         )
                     }) : null}
-                        <ModalProduct />
+                    <ModalProduct />
 
                     {/* <Card>
                         <CardImg top width="100%" src={pictureURLs[0]} alt="Bolivian coffee beans"/>
