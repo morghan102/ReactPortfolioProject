@@ -2,11 +2,12 @@
 1. Convert to class components.
 2. Complete cart.
 3. Complete home screen
-4. Add info page for each product (optional)
+4. ~~Add info page for each product (optional)~~
 5. Form submit working
 6. Connect firebase
 7. Add blogposts to Firebase
 8. pictures to fb?
+9. Add popup/bubble to cart icon indicating how many prducts in cart
 
 
 TIME:
@@ -26,6 +27,8 @@ TIME:
 11/28: 2:45-7pm
 11/30: 45min
 12/2: 8:15-9:45
+12/3: 1.5hr
+12/5: 
 
 # Brad's Coffee Roastery
 Ecommerce React web app where clients can purchase bags of fresh, roasted coffee from a small, Maine artisan coffee roaster.

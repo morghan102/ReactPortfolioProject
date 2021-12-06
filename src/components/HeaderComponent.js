@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Nav, Collapse, NavItem, Navbar, NavbarBrand, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label, Badge } from 'reactstrap';
 // adding alert would be neat
 // https://reactstrap.github.io/components/alerts/
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,9 +11,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 // https://codesandbox.io/s/nifty-newton-f4j0j?file=/src/Header.js or https://stackoverflow.com/questions/59510990/how-to-change-navbar-background-color-in-react-when-i-scroll
 
 class Header extends Component {
-
     constructor(props) {
         super(props);
+console.log(props)
 
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -78,6 +78,7 @@ class Header extends Component {
                                 <NavItem className="mt-2">
                                     <NavLink className="nav-link" to="/cart" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-shopping-cart fa-lg" />
+                                        <p><Badge  className='bg-info' pill>{this.props.products.length}</Badge>
                                     </NavLink>
                                 </NavItem>
                                 <span className="ml-2 navbar-text">

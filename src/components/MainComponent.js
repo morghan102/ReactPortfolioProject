@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import About from './AboutComponent';
@@ -9,6 +9,8 @@ import Cart from './CartComponent';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CoffeeProducts from './CoffeeProducts';
+import { AppContext } from '../context';
+
 
 const mapStateToProps = state => {
     return {
@@ -18,6 +20,7 @@ const mapStateToProps = state => {
 };
 
 function Main() {
+    const { dispatchEvent, productsInCart } = useContext(AppContext);
 
     // render() {
     // i dont think i need that. they have a func like this just for the homepage w the feature
@@ -47,7 +50,7 @@ function Main() {
 
     return (
         <div>
-            <Header />
+            <Header products={productsInCart } />
             <Switch>
                 <Route exact path='/home' render={() => <Home />} />
                 <Route exact path='/about' component={About} />
