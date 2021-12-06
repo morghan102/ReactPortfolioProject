@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Container, Button, Row, ListGroupItem } from "reactstrap";
 import Checkout from "./CheckoutComponent";
 import { AppContext } from "../context";
-import { ListGroup, Card, Alert } from "react-bootstrap";
+import { ListGroup, Card, Alert, Table } from "react-bootstrap";
 
 
 export default function Cart() {
@@ -15,33 +15,50 @@ export default function Cart() {
 
     const ItemsInCart = () => {
         let localTotal = 0;
+        let tax = subtotal * .15
+        setTotal(tax + subtotal)
         return (
-            <Container>
-                <ListGroup horizontal variant='flush'>
-                    <ListGroupItem  className="fw-bold">Product</ListGroupItem>
-                    <ListGroupItem>Roast</ListGroupItem>
-                    <ListGroupItem>Price x Quantity</ListGroupItem>
-                </ListGroup>
-                {/* <Card> */}
-                {productsInCart.map((prod) => {
-                    localTotal += (prod.price * prod.quantity);
-                    return (
-                        <ListGroup horizontal variant='flush'>
-                            <ListGroupItem>{prod.title}</ListGroupItem>
-                            <ListGroupItem>{prod.roast} roast</ListGroupItem>
-                            <ListGroupItem>{prod.price} x {prod.quantity}</ListGroupItem>
-                        </ListGroup>
-                        // <Card.Body>
-                        //     <Card.Title>{prod.title}</Card.Title>
-                        //     <Card.Text>{prod.roast} roast</Card.Text>
-                        //     <Card.Text>${prod.price} x {prod.quantity}</Card.Text>
-                        //     <Card.Text></Card.Text>
-                        // </Card.Body>
-                    )
-                })}
-                {setSubtotal(localTotal)}
-                {/* </Card> */}
-            </Container>
+            <>
+                <Table responsive='md'>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Roast</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Item Total</th>
+                        </tr>
+                    </thead>
+                    {productsInCart.map((prod) => {
+                        localTotal += (prod.price * prod.quantity);
+                        return (
+                            <tr horizontal variant='flush'>
+                                <td>{prod.title}</td>
+                                <td>{prod.roast} roast</td>
+                                <td>{prod.price}</td>
+                                <td>{prod.quantity}</td>
+                                <td>${prod.price * prod.quantity}</td>
+                            </tr>
+                        )
+                    })}
+                </Table>
+                {/* maybe this not a new table */}
+                <Table>
+                    <tr>
+                        <td >Subtotal</td>
+                        <td>${subtotal}</td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>${tax}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>${total}</td>
+                    </tr>
+                    {setSubtotal(localTotal)}
+                </Table>
+            </>
         )
     }
 
@@ -66,7 +83,7 @@ export default function Cart() {
                 productsInCart.length > 0 ?
                     <>
                         <ItemsInCart />
-                        <Subtotal />
+                        {/* <Subtotal /> */}
                         <Button onClick={() => setReadyToPay(true)}>Ready to Pay!</Button>
                     </> : <Container>
                         <Alert variant='danger'>
