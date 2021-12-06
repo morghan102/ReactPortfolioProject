@@ -78,7 +78,7 @@ console.log(props)
                                 <NavItem className="mt-2">
                                     <NavLink className="nav-link" to="/cart" style={style} activeStyle={actStyle}>
                                         <i className="fa fa-shopping-cart fa-lg" />
-                                        <p><Badge  className='bg-info' pill>{this.props.products.length}</Badge>
+                                        <Badge  className='bg-info' pill>{this.props.products.length}</Badge>
                                     </NavLink>
                                 </NavItem>
                                 <span className="ml-2 navbar-text">
