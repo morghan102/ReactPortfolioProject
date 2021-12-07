@@ -24,7 +24,9 @@ function App() {
       //   return
       case 'ADD_ITEM_TO_CART':
         setProductsInCart(payload);
-        console.log(payload)
+        return
+      case 'RESET_CART':
+        setProductsInCart([]);
         return
       default:
         return;

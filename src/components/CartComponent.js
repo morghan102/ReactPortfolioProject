@@ -9,14 +9,15 @@ export default function Cart() {
     // ui for the cart itself and whatevers been ordered
     const [readyToPay, setReadyToPay] = useState(false);
     const [subtotal, setSubtotal] = useState(0)
-    const { dispatchEvent, productsInCart } = useContext(AppContext);
+    const { productsInCart } = useContext(AppContext);
     const [total, setTotal] = useState(0)
 
 
     const ItemsInCart = () => {
         let localTotal = 0;
-        let tax = subtotal * .15
-        setTotal(tax + subtotal)
+        // let tax = subtotal * .15
+        // setTotal(tax + subtotal)
+        // setSubTotal(subtotal)
         return (
             <>
                 <Table responsive='md'>
@@ -42,10 +43,15 @@ export default function Cart() {
                         )
                     })}
                 </Table>
-                {/* maybe this not a new table */}
-                <Table>
+                {setSubtotal(localTotal)}
+                <div className='checkout'>
+                    <h4>Subtotal: ${localTotal}</h4>
+                    <p>Shipping and taxes calculated at checkout</p>
+                </div>
+                {/* <Container style={{maxWidth: '50%', justifyContent: 'end', paddingRight: '0', display: 'flex'}}>
+                <Table >
                     <tr>
-                        <td >Subtotal</td>
+                        <td>Subtotal</td>
                         <td>${subtotal}</td>
                     </tr>
                     <tr>
@@ -58,6 +64,7 @@ export default function Cart() {
                     </tr>
                     {setSubtotal(localTotal)}
                 </Table>
+                </Container> */}
             </>
         )
     }
@@ -92,7 +99,7 @@ export default function Cart() {
                     </Container>
 
                 : <Container style={{ textAlign: 'center' }} >
-                    <Checkout subtotal={total} />
+                    <Checkout subtotal={subtotal} />
                     <Button onClick={() => setReadyToPay(false)}>Changed my mind!</Button>
                 </Container>
             }

@@ -153,7 +153,7 @@
 // export default scriptLoader(`https://www.paypal.com/sdk/js?client-id=${CLIENT_ID}`)(Cart);
 
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   PayPalScriptProvider,
   PayPalButtons,
@@ -161,7 +161,7 @@ import {
 } from "@paypal/react-paypal-js";
 import { Button, Row, Container, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
-
+import { AppContext } from "../context";
 // This values are the props in the UI
 
 // Custom component to wrap the PayPalButtons and handle currency changes
@@ -174,11 +174,14 @@ export default function Checkout(props) {
   const amount = props.subtotal;
   const currency = "USD";
   const style = { "layout": "vertical" };
+  const { dispatchEvent, productsInCart } = useContext(AppContext);
 
-
+// need to add an address thing too, submits to email and firebase
 
   const PaymentSuccessful = () => {
-    if (paid) return (
+    if (paid) {
+    // dispatchEvent('RESET_CART', []) //this is causing an error :( 'Maximum update depth exceeded.'
+    return (
       <Container>
         <Row>
           <p>Thank you for ordering. Your item will be roasted, packaged, and shipped within 5 business days.</p>
@@ -197,7 +200,7 @@ export default function Checkout(props) {
         </Row>
       </Container>
     )
-    else return null;
+    }else return null;
   }
 
   const handleRenavigate = () => {
