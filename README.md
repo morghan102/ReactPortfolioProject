@@ -7,10 +7,12 @@
 6. Connect firebase
 7. Add blogposts to Firebase
 8. pictures to fb?
-9. Add popup/bubble to cart icon indicating how many prducts in cart
+9. ~~Add popup/bubble to cart icon indicating how many prducts in cart~~
+10. Writing tests
+11. Django???
 
 
-TIME:
+<!-- TIME:
 (this is not complete)
 11/9: 2hrs
 11/10: 10am-12:00 12-12:30
@@ -28,7 +30,13 @@ TIME:
 11/30: 45min
 12/2: 8:15-9:45
 12/3: 1.5hr
-12/5: 
+12/5: 1hr
+12/6: 8:50-10 
+12/27: 1hr
+
+
+
+-->
 
 # Brad's Coffee Roastery
 Ecommerce React web app where clients can purchase bags of fresh, roasted coffee from a small, Maine artisan coffee roaster.
